@@ -1,0 +1,43 @@
+<h3>Public Home</h3>
+
+<div class="row">
+
+  <div class="col-3">
+    <!-- Category Links -->
+    <div class="list-group">
+      <span (click)="searchByCategory(item.id)" class="list-group-item" *ngFor="let item of categories">
+        {{item.name}}
+      </span>
+    </div>
+
+  </div>
+
+  <div class="col">
+    <!-- Search Bar -->
+    <div class="card">
+      <form [formGroup]="searchForm" class="card-body">
+        <h4>Search Course</h4>
+        <div class="row">
+          <div class="col-6">
+            <input formControlName="keyword" type="text" placeholder="Search Keyword" class="form-control">
+          </div>
+          <div class="col">
+            <button (click)="search()" class="btn btn-outline-primary">
+              <i class="bi bi-search"></i> Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Search Result -->
+    <div class="row row-cols-3 g-3 mt-3">
+      <div class="col" *ngFor="let item of courseList">
+        <app-course-item [course]="item" (showDetailsListener)="showDetails($event)" ></app-course-item>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
