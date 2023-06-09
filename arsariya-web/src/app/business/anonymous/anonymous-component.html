@@ -2,16 +2,22 @@
 <nav class="navbar navbar-expand navbar-dark bg-success">
   <div class="container">
 
-    <a [routerLink]="['/anonymous/home']" class="navbar-brand">The Learners</a>
+    <a [routerLink]="['/']" class="navbar-brand">
+      <i class="bi bi-mortarboard"></i> The Learners
+    </a>
 
     <ul class="navbar-nav">
 
       <li class="nav-item">
-        <a [routerLink]="['/anonymous/signup']" routerLinkActive="active"  class="nav-link">Teachers Sign Up</a>
+        <a [routerLink]="['/anonymous/signup']" routerLinkActive="active"  class="nav-link">
+          <i class="bi bi-pen"></i> Teachers Sign Up
+        </a>
       </li>
 
       <li class="nav-item">
-        <a [routerLink]="['/anonymous/signin']" routerLinkActive="active" class="nav-link">Sign In</a>
+        <a [routerLink]="['/anonymous/signin']" routerLinkActive="active" class="nav-link">
+          <i class="bi bi-door-open"></i> Sign In
+        </a>
       </li>
     </ul>
 

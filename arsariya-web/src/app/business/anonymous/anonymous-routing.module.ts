@@ -9,13 +9,12 @@ import { AnonymousComponent } from './anonymous-component';
 
 const routes: Routes = [
   {path: '', component: AnonymousComponent, children: [
-    {path: 'home', component: HomeComponent},
     {path: 'signin', component: SigninComponent},
     {path: 'signup', component: SignupComponent},
     {path: 'registration', component: RegistrationComponent},
     {path: 'course-details', component: CourseDetailsComponent},
     {path: 'registration', component: RegistrationComponent},
-    {path: '', redirectTo: '/anonymous/home', pathMatch: 'full'}
+    {path: '', component: HomeComponent}
   ]}
 ];
 
