@@ -7,9 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { PagesModule } from '../commons/pages/pages.module';
+import { PagesModule } from '../../commons/pages/pages.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { WidgetsModule } from '../commons/widgets/widgets.module';
+import { WidgetsModule } from '../../commons/widgets/widgets.module';
 
 
 @NgModule({

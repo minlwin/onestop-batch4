@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { CourseDetailsComponent } from '../commons/pages/course-details/course-details.component';
+import { CourseDetailsComponent } from '../../commons/pages/course-details/course-details.component';
 import { AnonymousComponent } from './anonymous-component';
 
 const routes: Routes = [

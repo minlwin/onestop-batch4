@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'anonymous', loadChildren: () => import('./anonymous/anonymous.module').then(m => m.AnonymousModule)},
+  {path: 'anonymous', loadChildren: () => import('./business/anonymous/anonymous.module').then(m => m.AnonymousModule)},
   {path: '', redirectTo: '/anonymous', pathMatch: 'full'}
 ];
 
