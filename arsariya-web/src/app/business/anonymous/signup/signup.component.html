@@ -6,20 +6,19 @@
   </div>
   <div class="col-4">
     <form action="#">
-      <div class="mb-3">
-        <label class="form-label">Name</label>
+      <app-form-group label="Name" [valid]="form.get('name')!.valid">
         <input type="text" class="form-control" placeholder="Enter your name">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-control" placeholder="Enter your email">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-control" placeholder="Enter Password">
-      </div>
+      </app-form-group>
 
-      <button class="btn btn-outline-success">
+      <app-form-group label="Name" [valid]="form.get('email')!.valid">
+        <input type="email" class="form-control" placeholder="Enter your email">
+      </app-form-group>
+
+      <app-form-group label="Name" [valid]="form.get('password')!.valid">
+        <input type="password" class="form-control" placeholder="Enter Password">
+      </app-form-group>
+
+      <button type="button" (click)="signUp()" class="btn btn-outline-success">
         <i class="bi bi-unlock"></i> Sign Up
       </button>
     </form>

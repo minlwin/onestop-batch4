@@ -5,21 +5,20 @@
     <img class="w-100 img-thumbnail" src="/assets/images/signin-cover.jpg" alt="Sign In Cover Image">
   </div>
   <div class="col-4">
-    <form action="#">
+    <form [formGroup]="form">
 
-      <div class="mb-3">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-control" placeholder="Enter your email">
-      </div>
+      <app-form-group [valid]="form.get('email')!.valid" label="Email Address">
+        <input formControlName="email" type="email" class="form-control" placeholder="Enter your email">
+      </app-form-group>
 
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" placeholder="Enter Password" class="form-control">
-      </div>
+      <app-form-group [valid]="form.get('password')!.valid" label="Password" >
+        <input formControlName="password" type="password" placeholder="Enter Password" class="form-control">
+      </app-form-group>
 
-      <button class="btn btn-outline-success">
+      <button [class.disabled]="!form.valid" type="button" (click)="signIn()" class="btn btn-outline-success">
         <i class="bi bi-unlock"></i> Sign In
       </button>
     </form>
+
   </div>
 </div>
