@@ -5,11 +5,11 @@ import { CategoryService } from 'src/app/services/apis/category.service';
 import { CourseService } from 'src/app/services/apis/course.service';
 
 @Component({
-  templateUrl: './home.component.html',
+  templateUrl: './public-home.component.html',
   styles: [
   ]
 })
-export class HomeComponent implements OnInit{
+export class PublicHomeComponent implements OnInit {
 
   categories:any[] = []
   courseList:any[] = []

@@ -1,0 +1,17 @@
+<section>
+
+  <!-- Search Form -->
+  <ng-content select="[searchForm]"></ng-content>
+
+  <!-- Search Result -->
+  <div *ngIf="empty" class="alert alert-info">
+    There is no {{dataType}} data.
+  </div>
+
+  <div *ngIf="!empty">
+    <ng-content select="[resultTable]"></ng-content>
+    <ng-content select="[pager]"></ng-content>
+  </div>
+
+
+</section>

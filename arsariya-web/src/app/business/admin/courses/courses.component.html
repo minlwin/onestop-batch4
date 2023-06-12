@@ -1,0 +1,68 @@
+<app-main-page icon="bi-book" title="Courses">
+
+  <app-search-table [empty]="list.length == 0">
+
+    <form class="row" [formGroup]="form" searchForm>
+      <div class="col-auto">
+        <app-form-group-simple label="Teacher">
+          <input type="text" class="form-control" placeholder="Search Teacher Name">
+        </app-form-group-simple>
+      </div>
+      <div class="col-auto">
+        <app-form-group-simple label="Course">
+          <input type="text" class="form-control" placeholder="Search Course Name">
+        </app-form-group-simple>
+      </div>
+      <div class="col-auto">
+        <app-form-group-simple label="Date From">
+          <input type="date" class="form-control" >
+        </app-form-group-simple>
+      </div>
+      <div class="col-auto">
+        <app-form-group-simple label="Date To">
+          <input type="date" class="form-control" >
+        </app-form-group-simple>
+      </div>
+
+      <div class="col btn-wrapper">
+        <button type="button" (click)="search()" class="btn btn-outline-danger">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
+    </form>
+
+    <table resultTable class="table table-striped">
+      <thead>
+        <tr>
+          <th>Teacher</th>
+          <th>Email</th>
+          <th>Course</th>
+          <th>Create Date</th>
+          <th>Fees</th>
+          <th>Students</th>
+          <th>Total</th>
+          <th>Agent Fees</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of list">
+          <td>{{item.teacher.name}}</td>
+          <td>{{item.teacher.email}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.fees}}</td>
+          <td>{{item.students}}</td>
+          <td>{{item.total}}</td>
+          <th>{{item.agentFees}}</th>
+        </tr>
+      </tbody>
+    </table>
+
+    <div pager>
+      <app-pagination alighment="start" [pager]="pager" [sizes]="sizes"
+        (onPageLinkClick)="changePage($event)"
+        (onPageSizeChange)="changePageSize($event)"></app-pagination>
+    </div>
+
+  </app-search-table>
+</app-main-page>

@@ -1,13 +1,51 @@
 <nav class="navbar navbar-expand bg-danger navbar-dark">
   <div class="container">
-    <a href="#" class="navbar-brand">
-      The Learners
+    <a [routerLink]="['/admin', 'public']" class="navbar-brand">
+      <i class="bi bi-mortarboard"></i> The Learners
     </a>
 
     <ul class="navbar-nav">
+
       <li class="nav-item">
-        <a href="#" class="nav-link">Sign Out</a>
+        <a [routerLink]="['/admin', 'home']" routerLinkActive="active" class="nav-link">
+          <i class="bi bi-house"></i> Home
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['/admin', 'registrations']" routerLinkActive="active" class="nav-link">
+          <i class="bi bi-pen"></i> Registrations
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['/admin', 'teachers']" routerLinkActive="active"  class="nav-link">
+          <i class="bi bi-people"></i> Teachers
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['/admin', 'courses']" routerLinkActive="active"  class="nav-link">
+          <i class="bi bi-book"></i> Courses
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['/admin', 'students']" routerLinkActive="active"  class="nav-link">
+          <i class="bi bi-people-fill"></i> Students
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a (click)="signOut()" class="nav-link">
+          <i class="bi bi-lock"></i> Sign Out
+        </a>
       </li>
     </ul>
   </div>
 </nav>
+
+<!-- contents -->
+<div class="container mt-3">
+  <router-outlet></router-outlet>
+</div>

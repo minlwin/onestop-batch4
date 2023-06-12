@@ -1,9 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
+import { HomeComponent } from './home/home.component';
+import { TeachersComponent } from './teachers/teachers.component';
+import { StudentsComponent } from './students/students.component';
+import { CoursesComponent } from './courses/courses.component';
+import { RegistrationsComponent } from './registrations/registrations.component';
+import { PublicHomeComponent } from 'src/app/commons/pages/public-home/public-home.component';
 
 const routes: Routes = [
-  {path: '', component: AdminComponent}
+  {path: '', component: AdminComponent, children: [
+    {path: 'public', component: PublicHomeComponent},
+    {path: 'teachers', component: TeachersComponent},
+    {path: 'students', component: StudentsComponent},
+    {path: 'courses', component: CoursesComponent},
+    {path: 'registrations', component: RegistrationsComponent},
+    {path: 'home', component: HomeComponent},
+    {path: '', redirectTo: '/admin/home', pathMatch: 'full'}
+  ]}
 ];
 
 @NgModule({

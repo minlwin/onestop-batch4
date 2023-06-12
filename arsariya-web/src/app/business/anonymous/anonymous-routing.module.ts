@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { CourseDetailsComponent } from '../../commons/pages/course-details/course-details.component';
 import { AnonymousComponent } from './anonymous-component';
+import { PublicHomeComponent } from 'src/app/commons/pages/public-home/public-home.component';
 
 const routes: Routes = [
   {path: '', component: AnonymousComponent, children: [
@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: 'registration', component: RegistrationComponent},
     {path: 'course-details', component: CourseDetailsComponent},
     {path: 'registration', component: RegistrationComponent},
-    {path: '', component: HomeComponent}
+    {path: '', component: PublicHomeComponent}
   ]}
 ];
 
