@@ -15,10 +15,10 @@ export class CourseService {
       result: {
         list: [],
         pager: {
-          current: 5,
+          current: 4,
           size: 10,
           totalCount: 51,
-          totalPage: 20
+          totalPage: 6
         }
       }
     })

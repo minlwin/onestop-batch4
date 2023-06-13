@@ -19,21 +19,27 @@
       </li>
 
       <li class="nav-item">
-        <a [routerLink]="['/admin', 'teachers']" routerLinkActive="active"  class="nav-link">
-          <i class="bi bi-people"></i> Teachers
-        </a>
-      </li>
-
-      <li class="nav-item">
         <a [routerLink]="['/admin', 'courses']" routerLinkActive="active"  class="nav-link">
           <i class="bi bi-book"></i> Courses
         </a>
       </li>
 
-      <li class="nav-item">
-        <a [routerLink]="['/admin', 'students']" routerLinkActive="active"  class="nav-link">
-          <i class="bi bi-people-fill"></i> Students
+      <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+          <i class="bi bi-people-fill"></i> Members
         </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" [routerLink]="['/admin', 'teachers']" routerLinkActive="active" >
+              Teachers
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" [routerLink]="['/admin', 'students']" routerLinkActive="active" >
+              Students
+            </a>
+          </li>
+        </ul>
       </li>
 
       <li class="nav-item">

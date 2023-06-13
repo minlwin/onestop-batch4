@@ -2,20 +2,21 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CourseService } from 'src/app/services/apis/course.service';
 import { ListResult, Pager } from 'src/app/services/dto/api-result';
+import { PagerListComponent } from '../pager-list.component';
 
 @Component({
   templateUrl: './courses.component.html',
   styles: [
   ]
 })
-export class CoursesComponent {
+export class CoursesComponent extends PagerListComponent{
 
   form:FormGroup
-  sizes:number[] = [10, 25, 50]
   list:any[] = []
   pager?:Pager
 
   constructor(builder:FormBuilder, private service:CourseService) {
+    super()
     this.form = builder.group({
       teacher: '',
       course: '',
@@ -36,13 +37,4 @@ export class CoursesComponent {
     })
   }
 
-  changePage(page:number) {
-    this.form.patchValue({current: page})
-    this.search()
-  }
-
-  changePageSize(size:number) {
-    this.form.patchValue({size: size})
-    this.search()
-  }
 }

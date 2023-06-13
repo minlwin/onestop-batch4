@@ -1,3 +1,62 @@
 <app-main-page icon="bi-people-fill" title="Students">
+  <app-search-table [empty]="list.length == 0">
 
+    <!-- Search Form -->
+    <form class="row" [formGroup]="form" searchForm>
+      <div class="col-auto">
+        <app-form-group-simple label="Student">
+          <input type="text" formControlName="student" class="form-control" placeholder="Search Student Name">
+        </app-form-group-simple>
+      </div>
+      <div class="col-auto">
+        <app-form-group-simple label="Date From">
+          <input type="date" formControlName="from" class="form-control" >
+        </app-form-group-simple>
+      </div>
+      <div class="col-auto">
+        <app-form-group-simple label="Date To">
+          <input type="date" formControlName="to" class="form-control" >
+        </app-form-group-simple>
+      </div>
+
+      <div class="col btn-wrapper">
+        <button type="button" (click)="search()" class="btn btn-outline-danger">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
+    </form>
+
+    <!-- Result Table -->
+    <table resultTable class="table table-striped">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Phone</td>
+          <td>Email</td>
+          <td>Registration At</td>
+          <td>Course</td>
+          <td>Paid</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of list">
+          <td>{{item.name}}</td>
+          <td>{{item.phone}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.registAt}}</td>
+          <td>{{item.courseCount}}</td>
+          <td>{{item.paid}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div pager>
+      <app-pagination alighment="start" [pager]="pager" [sizes]="sizes"
+        (onPageLinkClick)="changePage($event)"
+        (onPageSizeChange)="changePageSize($event)"></app-pagination>
+    </div>
+
+  </app-search-table>
 </app-main-page>

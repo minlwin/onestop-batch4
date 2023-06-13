@@ -9,7 +9,6 @@ import { Pager } from 'src/app/services/dto/api-result';
 })
 export class PaginationComponent {
 
-
   @Input()
   sizes:number[] = []
 
@@ -23,17 +22,21 @@ export class PaginationComponent {
   onPageSizeChange = new EventEmitter
 
   pages:number[] = []
-  showFirst = false
-  showLast = false
   lastPage = 0
   current = 0
+
+  get showFirst() {
+    return this.pages.length > 0 && this.pages[0] > 1
+  }
+
+  get showLast() {
+    return this.pages.length > 0 && this.pages[this.pages.length - 1] < this.lastPage
+  }
 
   @Input()
   set pager(pager:Pager | undefined) {
     this.pages = []
 
-    this.showFirst = pager ? pager.current > 3 : false
-    this.showLast = pager ? pager.totalPage - 2 > pager.current : false
     if(pager && pager.totalPage > 1) {
 
       this.lastPage = pager.totalPage

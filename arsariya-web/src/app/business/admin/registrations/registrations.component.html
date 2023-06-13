@@ -1,3 +1,70 @@
 <app-main-page icon="bi-pen" title="Registrations">
+  <app-search-table [empty]="list.length == 0">
 
+    <!-- Search Form -->
+    <form class="row" [formGroup]="form" searchForm>
+      <div class="col-auto">
+        <app-form-group-simple label="Student">
+          <input type="text" formControlName="student" class="form-control" placeholder="Search Student Name">
+        </app-form-group-simple>
+      </div>
+      <div class="col-auto">
+        <app-form-group-simple label="Course">
+          <input type="text" formControlName="course" class="form-control" placeholder="Search Course Name">
+        </app-form-group-simple>
+      </div>
+      <div class="col-auto">
+        <app-form-group-simple label="Date From">
+          <input type="date" formControlName="from" class="form-control" >
+        </app-form-group-simple>
+      </div>
+      <div class="col-auto">
+        <app-form-group-simple label="Date To">
+          <input type="date" formControlName="to" class="form-control" >
+        </app-form-group-simple>
+      </div>
+
+      <div class="col btn-wrapper">
+        <button type="button" (click)="search()" class="btn btn-outline-danger">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
+    </form>
+
+    <!-- Result Table -->
+    <table resultTable class="table table-striped">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Email</th>
+          <th>Registration Date</th>
+          <th>Course</th>
+          <th>Teacher</th>
+          <th>Fees</th>
+          <th>Discount</th>
+          <th>Paid</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of list">
+          <td>{{item.student.name}}</td>
+          <td>{{item.student.email}}</td>
+          <td>{{item.registAt}}</td>
+          <td>{{item.course.name}}</td>
+          <td>{{item.course.teacher.name}}</td>
+          <td>{{item.fees}}</td>
+          <td>{{item.discount}}</td>
+          <td>{{item.paid}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Pagination -->
+    <div pager>
+      <app-pagination alighment="start" [pager]="pager" [sizes]="sizes"
+        (onPageLinkClick)="changePage($event)"
+        (onPageSizeChange)="changePageSize($event)"></app-pagination>
+    </div>
+
+  </app-search-table>
 </app-main-page>

@@ -5,22 +5,22 @@
     <form class="row" [formGroup]="form" searchForm>
       <div class="col-auto">
         <app-form-group-simple label="Teacher">
-          <input type="text" class="form-control" placeholder="Search Teacher Name">
+          <input type="text" formControlName="teacher" class="form-control" placeholder="Search Teacher Name">
         </app-form-group-simple>
       </div>
       <div class="col-auto">
         <app-form-group-simple label="Course">
-          <input type="text" class="form-control" placeholder="Search Course Name">
+          <input type="text" formControlName="course" class="form-control" placeholder="Search Course Name">
         </app-form-group-simple>
       </div>
       <div class="col-auto">
         <app-form-group-simple label="Date From">
-          <input type="date" class="form-control" >
+          <input type="date" formControlName="from" class="form-control" >
         </app-form-group-simple>
       </div>
       <div class="col-auto">
         <app-form-group-simple label="Date To">
-          <input type="date" class="form-control" >
+          <input type="date" formControlName="to" class="form-control" >
         </app-form-group-simple>
       </div>
 
@@ -59,7 +59,7 @@
     </table>
 
     <div pager>
-      <app-pagination alighment="start" [pager]="pager" [sizes]="sizes"
+      <app-pagination alighment="end" [pager]="pager" [sizes]="sizes"
         (onPageLinkClick)="changePage($event)"
         (onPageSizeChange)="changePageSize($event)"></app-pagination>
     </div>
