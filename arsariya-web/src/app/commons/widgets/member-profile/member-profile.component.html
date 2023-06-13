@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    Profile
+  </div>
+  <div class="card-body">
+
+    <!-- Profile Image  -->
+    <img class="img-fluid w-100" [src]="profile?.image || '/assets/images/profile.png'" alt="">
+
+    <div class="list-group mt-3">
+      <!-- Name -->
+      <div class="list-group-item">
+        <i class="bi bi-person"></i> {{profile?.name || 'User Name'}}
+      </div>
+      <!-- Phone -->
+      <div class="list-group-item">
+        <i class="bi bi-telephone"></i> {{profile?.phone || '099-110-22929'}}
+      </div>
+      <!-- Email -->
+      <div class="list-group-item">
+        <i class="bi bi-envelope"></i> {{profile?.email || 'teacher@gmail.com'}}
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <span (click)="edit()" class="btn btn-primary d-block">
+        <i class="bi bi-pencil"></i> Edit Profile
+      </span>
+    </div>
+
+  </div>
+</div>

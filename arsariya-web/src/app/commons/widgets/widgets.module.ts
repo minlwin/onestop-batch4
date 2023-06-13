@@ -6,8 +6,9 @@ import { SearchTableComponent } from './search-table/search-table.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { FormGroupSimpleComponent } from './form-group-simple/form-group-simple.component';
 import { PaginationComponent } from './pagination/pagination.component';
-
-
+import { MemberProfileComponent } from './member-profile/member-profile.component';
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,10 @@ import { PaginationComponent } from './pagination/pagination.component';
     SearchTableComponent,
     FormGroupComponent,
     FormGroupSimpleComponent,
-    PaginationComponent
+    PaginationComponent,
+    MemberProfileComponent,
+    ModalDialogComponent,
+    ErrorDialogComponent
   ],
   imports: [
     CommonModule
@@ -27,7 +31,10 @@ import { PaginationComponent } from './pagination/pagination.component';
     SearchTableComponent,
     FormGroupComponent,
     FormGroupSimpleComponent,
-    PaginationComponent
+    PaginationComponent,
+    MemberProfileComponent,
+    ModalDialogComponent,
+    ErrorDialogComponent
   ]
 })
 export class WidgetsModule { }

@@ -29,63 +29,65 @@ export class CourseService {
   }
 
   search(form: any):Observable<any[]> {
-    return of(this.result)
+    return of(COURSES)
   }
 
-  private result:any[] = [
-    {
-      id: 1,
-      name: 'Java Basic',
-      category: {
-        id: 1,
-        name: 'Computer Science'
-      },
-      description: 'Entry course of Java Programming. Basic of the basic.',
-      teacher: {
-        id: 1,
-        name: 'Mr Hank'
-      }
-    },
-    {
-      id: 1,
-      name: 'Java Basic',
-      category: {
-        id: 1,
-        name: 'Computer Science'
-      },
-      description: 'Entry course of Java Programming. Basic of the basic.',
-      teacher: {
-        id: 1,
-        name: 'Mr Hank'
-      }
-    },
-    {
-      id: 1,
-      name: 'Java Basic',
-      category: {
-        id: 1,
-        name: 'Computer Science'
-      },
-      description: 'Entry course of Java Programming. Basic of the basic.',
-      teacher: {
-        id: 1,
-        name: 'Mr Hank'
-      }
-    },
-    {
-      id: 1,
-      name: 'Java Basic',
-      category: {
-        id: 1,
-        name: 'Computer Science'
-      },
-      description: 'Entry course of Java Programming. Basic of the basic.',
-      teacher: {
-        id: 1,
-        name: 'Mr Hank'
-      }
-    },
 
-  ]
 
 }
+
+export const COURSES:any[] = [
+  {
+    id: 1,
+    name: 'Java Basic',
+    category: {
+      id: 1,
+      name: 'Computer Science'
+    },
+    description: 'Entry course of Java Programming. Basic of the basic.',
+    teacher: {
+      id: 1,
+      name: 'Mr Hank'
+    }
+  },
+  {
+    id: 1,
+    name: 'Java Basic',
+    category: {
+      id: 1,
+      name: 'Computer Science'
+    },
+    description: 'Entry course of Java Programming. Basic of the basic.',
+    teacher: {
+      id: 1,
+      name: 'Mr Hank'
+    }
+  },
+  {
+    id: 1,
+    name: 'Java Basic',
+    category: {
+      id: 1,
+      name: 'Computer Science'
+    },
+    description: 'Entry course of Java Programming. Basic of the basic.',
+    teacher: {
+      id: 1,
+      name: 'Mr Hank'
+    }
+  },
+  {
+    id: 1,
+    name: 'Java Basic',
+    category: {
+      id: 1,
+      name: 'Computer Science'
+    },
+    description: 'Entry course of Java Programming. Basic of the basic.',
+    teacher: {
+      id: 1,
+      name: 'Mr Hank'
+    }
+  },
+
+]

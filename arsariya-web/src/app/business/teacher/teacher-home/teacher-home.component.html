@@ -1,0 +1,23 @@
+<app-main-page icon="bi-house" title="Teacher's Home">
+
+  <div class="row">
+
+    <div class="col">
+      <!-- Courses -->
+      <div class="row row-cols-3 g-3">
+        <app-course-item *ngFor="let item of courses" [course]="item"></app-course-item>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <!-- Profile -->
+      <app-member-profile [profile]="profile" [canEdit]="true"></app-member-profile>
+
+      <div class="mb-3"></div>
+
+      <!-- Payment Methods -->
+      <app-payment-methods [data]="payments"></app-payment-methods>
+
+    </div>
+  </div>
+</app-main-page>

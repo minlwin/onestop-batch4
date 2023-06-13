@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { ApiResult } from "../dto/api-result";
+import { COURSES } from "./course.service";
 
 @Injectable({providedIn: 'root'})
 export class TeacherService {
@@ -18,6 +19,17 @@ export class TeacherService {
         }
       }
     })
+  }
 
+  findPaymentMethod(loginId:string):Observable<any[]> {
+    return of([
+      {type: 'Wave Money', accountName: 'Min Lwin', accountNumber: '09782003098'},
+      {type: 'KPAY', accountName: 'Min Lwin', accountNumber: '09782003098'},
+      {type: 'Aya Pay', accountName: 'Min Lwin', accountNumber: '09782003098'},
+    ])
+  }
+
+  findCourseForTeacher(loginId:string) {
+    return of(COURSES)
   }
 }

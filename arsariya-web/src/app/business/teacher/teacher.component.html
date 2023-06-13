@@ -1,14 +1,31 @@
 <nav class="navbar navbar-expand bg-primary navbar-dark">
   <div class="container">
-    <a href="#" class="navbar-brand">
+    <a [routerLink]="['/teacher', 'public']" class="navbar-brand">
       <i class="bi bi-book"></i> The Learners
     </a>
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a [routerLink]="['/teacher', 'home']" routerLinkActive="active"  class="nav-link">
+          <i class="bi bi-house"></i> Home
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['/teacher', 'course-edit']" routerLinkActive="active" class="nav-link">
+          <i class="bi bi-plus-lg"></i> Crate Course
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a (click)="signOut()" class="nav-link">
           <i class="bi bi-lock"></i> Sign Out</a>
       </li>
     </ul>
   </div>
 </nav>
+
+<!-- contents -->
+<div class="container mt-3">
+  <router-outlet></router-outlet>
+</div>
