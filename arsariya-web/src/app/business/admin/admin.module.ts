@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { WidgetsModule } from 'src/app/commons/widgets/widgets.module';
 import { PagesModule } from 'src/app/commons/pages/pages.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PaymentMasterComponent } from './payment-master/payment-master.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     StudentsComponent,
     CoursesComponent,
     RegistrationsComponent,
-    HomeComponent
+    HomeComponent,
+    PaymentMasterComponent
   ],
   imports: [
     CommonModule,

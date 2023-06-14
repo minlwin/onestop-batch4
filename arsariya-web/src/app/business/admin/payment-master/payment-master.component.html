@@ -1,0 +1,46 @@
+<app-main-page icon="bi-credit-card" title="Payment Method Master">
+
+  <div>
+    <button (click)="addNew()" class="btn btn-outline-danger">
+      <i class="bi bi-plus-lg"></i> Create Payment Method
+    </button>
+  </div>
+
+  <div class="row row-cols-3 mt-3">
+    <div *ngFor="let item of list" class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title d-flex justify-content-between">
+            <span >
+              <i class="bi bi-credit-card"></i> {{item.name}}
+            </span>
+
+            <span (click)="edit(item)" class="btn-link">
+              <i class="bi bi-pencil"></i>
+            </span>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-main-page>
+
+<app-modal-dialog modelId="paymentMasterForm">
+
+  <h4 header><i class="bi bi-pencil"></i> {{form.value.id ? 'Edit' : 'Add New'}} Payment Method</h4>
+
+  <form [formGroup]="form" body>
+    <app-form-group [valid]="form.get('name')?.valid ?? false" label="Payment Method Name">
+      <input formControlName="name" type="text" class="form-control" placeholder="Enter Payment Method Name">
+    </app-form-group>
+  </form>
+
+  <div footer>
+    <button (click)="save()" [class.disabled]="!form.valid" class="btn btn-outline-danger">
+      <i class="bi bi-save"></i> Save
+    </button>
+  </div>
+
+</app-modal-dialog>

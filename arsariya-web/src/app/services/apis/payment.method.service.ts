@@ -11,4 +11,17 @@ export class PaymentMethodService {
       {id: 3, name: 'AYA PAY'}
     ])
   }
+
+  save(value: any):Observable<any> {
+    const {id, ... form} = value
+    return id == 0 ? this.create(form) : this.update(id, form)
+  }
+
+  private create(form:any):Observable<any> {
+    return of(form)
+  }
+
+  private update(id:number, form:any):Observable<any> {
+    return of(form)
+  }
 }
