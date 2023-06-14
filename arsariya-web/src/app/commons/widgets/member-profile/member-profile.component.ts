@@ -17,6 +17,9 @@ export class MemberProfileComponent implements OnChanges{
   email?:string
 
   @Input()
+  profileType?:string
+
+  @Input()
   canEdit?:boolean
 
   @Input()

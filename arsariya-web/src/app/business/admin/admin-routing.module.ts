@@ -9,11 +9,13 @@ import { RegistrationsComponent } from './registrations/registrations.component'
 import { PublicHomeComponent } from 'src/app/commons/pages/public-home/public-home.component';
 import { PaymentMasterComponent } from './payment-master/payment-master.component';
 import { CourseDetailsComponent } from 'src/app/commons/pages/course-details/course-details.component';
+import { TeacherProfileComponent } from 'src/app/commons/pages/teacher-profile/teacher-profile.component';
 
 const routes: Routes = [
   {path: '', component: AdminComponent, children: [
     {path: 'public', component: PublicHomeComponent},
     {path: 'course-details', component: CourseDetailsComponent},
+    {path: 'teacher-profile', component: TeacherProfileComponent},
     {path: 'payment', component: PaymentMasterComponent},
     {path: 'teachers', component: TeachersComponent},
     {path: 'students', component: StudentsComponent},

@@ -1,1 +1,23 @@
-<app-main-page icon="bi-person" title="Teacher Profile"></app-main-page>
+<app-main-page icon="bi-person" title="Courses of Teacher">
+
+  <div class="row">
+
+    <div class="col">
+      <!-- Courses -->
+      <div class="row row-cols-3 g-3">
+        <div *ngFor="let item of courses" class="col">
+          <app-course-item (showDetailsListener)="showCourseDetails(item.id)" [course]="item"></app-course-item>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <!-- Teacher Profile -->
+      <app-member-profile profileType="Teacher" [canEdit]="isOwnProfile" [email]="teacherEmail"></app-member-profile>
+
+      <div *ngIf="isOwnProfile" class="mt-3">
+        <app-payment-method [email]="teacherEmail"></app-payment-method>
+      </div>
+    </div>
+  </div>
+</app-main-page>

@@ -5,6 +5,9 @@ import { TeacherProfileComponent } from './teacher-profile/teacher-profile.compo
 import { PublicHomeComponent } from './public-home/public-home.component';
 import { WidgetsModule } from '../widgets/widgets.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CourseCoverComponent } from './course-details/course-cover/course-cover.component';
+import { CourseObjectivesComponent } from './course-details/course-objectives/course-objectives.component';
+import { PaymentMethodComponent } from './teacher-profile/payment-method/payment-method.component';
 
 
 
@@ -12,7 +15,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     CourseDetailsComponent,
     TeacherProfileComponent,
-    PublicHomeComponent
+    PublicHomeComponent,
+    CourseCoverComponent,
+    CourseObjectivesComponent,
+    PaymentMethodComponent,
   ],
   imports: [
     CommonModule,

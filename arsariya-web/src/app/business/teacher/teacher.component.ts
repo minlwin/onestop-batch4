@@ -15,4 +15,8 @@ export class TeacherComponent {
     })
   }
 
+  get loginId() {
+    return this.security.loginId
+  }
+
 }

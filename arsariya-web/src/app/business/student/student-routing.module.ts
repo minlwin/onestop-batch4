@@ -4,11 +4,13 @@ import { StudentComponent } from './student.component';
 import { PublicHomeComponent } from 'src/app/commons/pages/public-home/public-home.component';
 import { StudentHomeComponent } from './student-home/student-home.component';
 import { CourseDetailsComponent } from 'src/app/commons/pages/course-details/course-details.component';
+import { TeacherProfileComponent } from 'src/app/commons/pages/teacher-profile/teacher-profile.component';
 
 const routes: Routes = [
   {path: '', component: StudentComponent, children: [
     {path: 'public', component: PublicHomeComponent},
     {path: 'course-details', component: CourseDetailsComponent},
+    {path: 'teacher-profile', component: TeacherProfileComponent},
     {path: 'home', component: StudentHomeComponent},
     {path: '', redirectTo: '/student/home', pathMatch: 'full'}
   ]}

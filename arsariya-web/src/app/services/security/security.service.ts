@@ -3,15 +3,25 @@ import { SecurityApi } from "../apis/security.api.service";
 import { Observable, of, tap } from "rxjs";
 import { LoginUser } from "../dto/login-user";
 
+const LOGIN_USER_KEY = 'jdc.learner.loginuser'
+
 @Injectable({providedIn: 'root'})
 export class SecurityService {
 
   private loginUser?:LoginUser
 
-  constructor(private api:SecurityApi) {}
+  constructor(private api:SecurityApi) {
+    let loginUserString = localStorage.getItem(LOGIN_USER_KEY)
+    if(loginUserString) {
+      this.loginUser = JSON.parse(loginUserString)
+    }
+  }
 
   signIn(form:any) {
-    return this.api.signIn(form).pipe(tap(result => this.loginUser = result))
+    return this.api.signIn(form).pipe(tap(result => {
+      this.loginUser = result
+      localStorage.setItem(LOGIN_USER_KEY, JSON.stringify(result))
+    }))
   }
 
   get loginId():string {
@@ -19,11 +29,20 @@ export class SecurityService {
       return this.loginUser.email
     }
 
-    return 'user@gmail.com'
-    // throw({message: 'You have to login again.', type: 'Auth Error'})
+    throw({message: 'You have to login again.', type: 'Auth Error'})
+  }
+
+  get role():string {
+    if(this.loginUser) {
+      return this.loginUser.role
+    }
+
+    return 'Anonymous'
   }
 
   signOut():Observable<any> {
+    this.loginUser = undefined
+    localStorage.removeItem(LOGIN_USER_KEY)
     return of({})
   }
 }

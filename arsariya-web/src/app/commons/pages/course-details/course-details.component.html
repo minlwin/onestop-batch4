@@ -1,3 +1,23 @@
 <app-main-page icon="bi-book" title="Course Details">
+  <div class="row">
+    <div class="col">
+      <!-- Course Information -->
+      <app-course-cover></app-course-cover>
 
+      <!-- What will you learn -->
+      <section class="mt-4">
+        <app-course-objectives></app-course-objectives>
+      </section>
+
+    </div>
+
+    <div class="col-3">
+      <!-- Profile of Teacher -->
+      <app-member-profile profileType="Teacher" [email]="courseDto.teacher.email"></app-member-profile>
+
+      <button *ngIf="!isOwnCourse" (click)="showCoursesForTeacher()" class="btn btn-outline-primary w-100 mt-3">
+        <i class="bi bi-send"></i> Show Courses for Teacher
+      </button>
+  </div>
+  </div>
 </app-main-page>

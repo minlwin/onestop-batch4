@@ -1,17 +1,16 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalDialogComponent } from 'src/app/commons/widgets/modal-dialog/modal-dialog.component';
 import { PaymentMethodService } from 'src/app/services/apis/payment.method.service';
 import { TeacherService } from 'src/app/services/apis/teacher.service';
 
 @Component({
-  selector: 'app-payment-methods',
-  templateUrl: './payment-methods.component.html',
+  selector: 'app-payment-method',
+  templateUrl: './payment-method.component.html',
   styles: [
   ]
 })
-export class PaymentMethodsComponent implements OnInit {
-
+export class PaymentMethodComponent {
   @Input()
   email?:string
 
