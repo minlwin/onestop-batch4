@@ -1,10 +1,10 @@
-<app-main-page icon="bi-house" title="Teacher's Home">
+<app-main-page icon="bi-house" title="Student's Home">
 
   <div class="row">
 
     <div class="col">
-      <!-- Courses -->
-      <div class="row row-cols-3 g-3">
+      <!-- Student's Course -->
+      <div class="row row-cols-3 g-3" >
         <div class="col" *ngFor="let item of courses" >
           <app-course-item [course]="item"></app-course-item>
         </div>
@@ -14,12 +14,7 @@
     <div class="col-3">
       <!-- Profile -->
       <app-member-profile [email]="email" [canEdit]="true"></app-member-profile>
-
-      <div class="mb-3"></div>
-
-      <!-- Payment Methods -->
-      <app-payment-methods [email]="email"></app-payment-methods>
-
     </div>
   </div>
+
 </app-main-page>

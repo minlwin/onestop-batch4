@@ -19,7 +19,7 @@ export class SecurityService {
       return this.loginUser.email
     }
 
-    return ''
+    return 'user@gmail.com'
     // throw({message: 'You have to login again.', type: 'Auth Error'})
   }
 

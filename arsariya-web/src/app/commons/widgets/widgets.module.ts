@@ -9,6 +9,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { MemberProfileComponent } from './member-profile/member-profile.component';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
     ErrorDialogComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     CourseItemComponent,

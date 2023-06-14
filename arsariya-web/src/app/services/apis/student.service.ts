@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { ApiResult } from "../dto/api-result";
+import { COURSES } from "./course.service";
 
 @Injectable({providedIn: 'any'})
 export class StudentService {
@@ -19,5 +20,9 @@ export class StudentService {
       }
     })
 
+  }
+
+  searchCourseForStudent(email:string):Observable<any[]> {
+    return of(COURSES)
   }
 }

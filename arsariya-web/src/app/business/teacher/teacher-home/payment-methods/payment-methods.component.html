@@ -12,7 +12,7 @@
 
       <div *ngFor="let item of data" class="list-group-item">
         <div class="fw-bold d-flex justify-content-between">
-          <span><i class="bi bi-credit-card"></i> {{item.type}}</span>
+          <span><i class="bi bi-credit-card"></i> {{item.type.name}}</span>
 
           <a (click)="edit(item)" class="btn-link">
             <i class="bi bi-pencil"></i>
@@ -30,3 +30,32 @@
     </div>
   </div>
 </div>
+
+<app-modal-dialog modelId="pamentEditId">
+  <h4 header>
+    <i class="bi bi-pencil"></i> Edit Payment Method
+  </h4>
+
+  <form body [formGroup]="form">
+    <app-form-group [valid]="form.get('type')?.valid ?? false" label="Payment Type">
+      <select class="form-select" formControlName="type">
+        <option value="">Select Type</option>
+        <option *ngFor="let item of payments" [value]="item.id">{{item.name}}</option>
+      </select>
+    </app-form-group>
+
+    <app-form-group [valid]="form.get('accountName')?.valid ?? false" label="Account Name">
+      <input formControlName="accountName" type="text" class="form-control" placeholder="Enter Account Name">
+    </app-form-group>
+
+    <app-form-group [valid]="form.get('accountNumber')?.valid ?? false" label="Account Number">
+      <input formControlName="accountNumber" type="text" class="form-control" placeholder="Enter Account Name">
+    </app-form-group>
+  </form>
+
+  <div footer>
+    <button [class.disabled]="!form.valid" (click)="save()" class="btn btn-outline-primary">
+      <i class="bi bi-save"></i> Save
+    </button>
+  </div>
+</app-modal-dialog>

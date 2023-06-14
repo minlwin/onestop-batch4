@@ -22,11 +22,41 @@
       </div>
     </div>
 
-    <div class="mt-3">
-      <span (click)="edit()" class="btn btn-primary d-block">
-        <i class="bi bi-pencil"></i> Edit Profile
-      </span>
+    <div *ngIf="canEdit" class="mt-3 row gx-2">
+      <div class="col">
+        <span class="btn btn-primary d-block">
+          <i class="bi bi-camera"></i> Upload
+        </span>
+      </div>
+      <div class="col">
+        <span (click)="edit()" class="btn btn-primary d-block">
+          <i class="bi bi-pencil"></i> Edit
+        </span>
+      </div>
     </div>
 
   </div>
 </div>
+
+<app-modal-dialog modelId="profileEditDialog">
+  <h4 header>
+    <i class="bi bi-pencil"></i> Edit Profile
+  </h4>
+  <form body [formGroup]="form">
+    <app-form-group label="Name" [valid]="form.get('name')?.valid ?? false">
+      <input type="text" placeholder="Enter Name" formControlName="name" class="form-control">
+    </app-form-group>
+    <app-form-group label="Phone" [valid]="form.get('phone')?.valid ?? false">
+      <input type="text" placeholder="Enter Phone" formControlName="phone" class="form-control">
+    </app-form-group>
+    <app-form-group label="Email" [valid]="form.get('email')?.valid ?? false">
+      <input type="email" placeholder="Enter Email" formControlName="email" class="form-control">
+    </app-form-group>
+  </form>
+
+  <div footer>
+    <button (click)="save()" class="btn btn-outline-primary">
+      <i class="bi bi-save"></i> Save
+    </button>
+  </div>
+</app-modal-dialog>

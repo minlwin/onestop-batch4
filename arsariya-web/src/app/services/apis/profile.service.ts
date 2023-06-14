@@ -13,4 +13,8 @@ export class ProfileService {
       image: ''
     })
   }
+
+  saveProfile(form:any):Observable<any> {
+    return of(form)
+  }
 }

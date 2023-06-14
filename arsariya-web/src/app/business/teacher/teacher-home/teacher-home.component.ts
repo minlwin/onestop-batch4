@@ -10,23 +10,15 @@ import { SecurityService } from 'src/app/services/security/security.service';
 })
 export class TeacherHomeComponent implements OnInit{
 
-  profile:any
-  payments:any[] = []
+  email?:string
   courses:any[] = []
 
   constructor(
     private security:SecurityService,
-    private profleService:ProfileService,
     private teacherService:TeacherService) {}
 
   ngOnInit(): void {
-    this.profleService.getProfile(this.security.loginId).subscribe(result => {
-      this.profile = result
-    })
-
-    this.teacherService.findPaymentMethod(this.security.loginId).subscribe(result => {
-      this.payments = result
-    })
+    this.email = this.security.loginId
 
     this.teacherService.findCourseForTeacher(this.security.loginId).subscribe(result => {
       this.courses = result

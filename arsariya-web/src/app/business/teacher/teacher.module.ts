@@ -9,6 +9,7 @@ import { TeacherHomeComponent } from './teacher-home/teacher-home.component';
 import { WidgetsModule } from 'src/app/commons/widgets/widgets.module';
 import { PagesModule } from 'src/app/commons/pages/pages.module';
 import { PaymentMethodsComponent } from './teacher-home/payment-methods/payment-methods.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { PaymentMethodsComponent } from './teacher-home/payment-methods/payment-
     CommonModule,
     TeacherRoutingModule,
     WidgetsModule,
-    PagesModule
+    PagesModule,
+    ReactiveFormsModule
   ]
 })
 export class TeacherModule { }
