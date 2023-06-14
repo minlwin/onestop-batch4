@@ -6,33 +6,50 @@
       </div>
 
       <div class="col">
-        <h1 class="card-title">Learn Java From Basic</h1>
-        <h5>Programming</h5>
+        <h1 class="card-title">{{dto.name}}</h1>
+        <h5>{{dto.category.name}}</h5>
 
-        <p>Learn Java like a Professional Start from the basics and go all the way to creating your own applications.</p>
+        <p>{{dto.description}}</p>
 
         <div class="d-flex">
           <div class="me-4">
-            <i class="bi bi-info-square"></i> 2023-04-01 Update
+            <i class="bi bi-info-square"></i> {{dto.lastUpdateDate ?? '2023-04-01'}} Update
           </div>
 
           <div class="me-4">
-            <i class="bi bi-clock"></i> 90 Hours
+            <i class="bi bi-clock"></i> {{dto.hours ?? 90}} Hours
           </div>
 
           <div class="me-4">
-            <i class="bi bi-laptop"></i> 12 Lessons
+            <i class="bi bi-laptop"></i> {{dto.lessonCount ?? 9}} Lessons
           </div>
 
           <div class="me-4">
-            <i class="bi bi-cart"></i> 120,000 MMK
+            <i class="bi bi-cart"></i> {{dto.fees ?? 120000 | number}} MMK
           </div>
         </div>
 
-        <div class="mt-4">
-          <button class="btn btn-outline-primary">
-            <i class="bi bi-plus"></i> Take this course.
-          </button>
+        <div *ngIf="!hideControls">
+          <div *ngIf="dto.type == 'PROMOTE'" class="mt-4">
+            <button (click)="takeRegistration()" class="btn btn-outline-primary">
+              <i class="bi bi-plus"></i> Take this course.
+            </button>
+          </div>
+
+          <div *ngIf="dto.type == 'OWN_COURSE'" class="mt-4">
+            <button (click)="editCourse()" class="btn btn-outline-primary me-2">
+              <i class="bi bi-pencil"></i> Edit course.
+            </button>
+            <button (click)="goToClassRoom()" class="btn btn-outline-primary">
+              <i class="bi bi-laptop"></i> Class Room
+            </button>
+          </div>
+
+          <div *ngIf="dto.type == 'ATTEND_COURSE'" class="mt-4">
+            <button (click)="goToClassRoom()" class="btn btn-outline-primary">
+              <i class="bi bi-laptop"></i> Class Room
+            </button>
+          </div>
         </div>
       </div>
     </div>

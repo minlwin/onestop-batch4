@@ -18,18 +18,29 @@ export class SecurityService {
   }
 
   signIn(form:any) {
-    return this.api.signIn(form).pipe(tap(result => {
-      this.loginUser = result
-      localStorage.setItem(LOGIN_USER_KEY, JSON.stringify(result))
-    }))
+    return this.api.signIn(form).pipe(tap(this.fetchUser))
   }
+
+  teacherSignUp(form:any) {
+    return this.api.teacherSignUp(form).pipe(tap(this.fetchUser))
+  }
+
+  studentSignUp(form:any) {
+    return this.api.studentSignUp(form).pipe(tap(this.fetchUser))
+  }
+
+
+  private fetchUser = (result:any) => {
+    this.loginUser = result
+    localStorage.setItem(LOGIN_USER_KEY, JSON.stringify(result))
+}
 
   get loginId():string {
     if(this.loginUser) {
       return this.loginUser.email
     }
 
-    throw({message: 'You have to login again.', type: 'Auth Error'})
+    throw({message: 'You have to login again.', type: 'Auth'})
   }
 
   get role():string {

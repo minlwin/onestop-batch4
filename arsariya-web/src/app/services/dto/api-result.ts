@@ -15,4 +15,4 @@ export interface Pager {
   totalPage:number
 }
 
-export declare type AipStatus = 'Success' | 'Auth Error' | 'Business Error'
+export declare type AipStatus = 'Success' | 'Auth' | 'Business'

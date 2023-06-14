@@ -21,7 +21,7 @@ export class ErrorDialogComponent {
 
   show(message?:string, type?:string) {
     this.message = message
-    this.logout = type == 'Auth Error'
+    this.logout = type == 'Auth'
     this.dialog?.show()
   }
 

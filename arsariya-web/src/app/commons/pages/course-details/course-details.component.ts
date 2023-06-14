@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { CourseService } from 'src/app/services/apis/course.service';
 import { SecurityService } from 'src/app/services/security/security.service';
 
@@ -18,24 +19,30 @@ export class CourseDetailsComponent {
     courseService:CourseService,
     private security:SecurityService,
     private router:Router) {
+
     route.queryParamMap.subscribe(map => {
       this.id = Number.parseInt(map.get('id')!)
 
       if(this.id) {
         // Load Course Information
-        courseService.findCourseDetails(this.id).subscribe(result => {
+        courseService.findCourseDetails(this.id)
+          // Delete after using api
+          .pipe(tap(data => {
+            data.type = security.role == 'Student' ? 'ATTEND_COURSE' : (security.role == 'Teacher' ? 'OWN_COURSE' : (security.role == 'Anonymous' ? 'PROMOTE' : 'NONE') )
+          }))
+          // Delete until here
+          .subscribe(result => {
           this.courseDto = result
         })
       }
     })
   }
 
-  get isOwnCourse() {
-    return this.security.role == 'Teacher' && this.security.loginId == this.courseDto.teacher.email
+  showCoursesForTeacher() {
+    this.router.navigate([this.rootSegment, 'teacher-profile'], {queryParams: {teacher: 'teacher@gmail.com'}})
   }
 
-
-  showCoursesForTeacher() {
-    this.router.navigate([`/${this.security.role.toLocaleLowerCase()}`, 'teacher-profile'], {queryParams: {teacher: 'teacher@gmail.com'}})
+  get rootSegment() {
+    return `/${this.security.role.toLocaleLowerCase()}`
   }
 }

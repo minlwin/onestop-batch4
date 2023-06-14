@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CourseCoverComponent } from './course-details/course-cover/course-cover.component';
 import { CourseObjectivesComponent } from './course-details/course-objectives/course-objectives.component';
 import { PaymentMethodComponent } from './teacher-profile/payment-method/payment-method.component';
+import { ClassRoomComponent } from './class-room/class-room.component';
 
 
 
@@ -19,6 +20,7 @@ import { PaymentMethodComponent } from './teacher-profile/payment-method/payment
     CourseCoverComponent,
     CourseObjectivesComponent,
     PaymentMethodComponent,
+    ClassRoomComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { PaymentMethodComponent } from './teacher-profile/payment-method/payment
   exports: [
     CourseDetailsComponent,
     TeacherProfileComponent,
-    PublicHomeComponent
+    PublicHomeComponent,
+    ClassRoomComponent,
   ]
 })
 export class PagesModule { }

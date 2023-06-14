@@ -12,4 +12,20 @@ export class SecurityApi {
       role: form.password
     })
   }
+
+  teacherSignUp(form:any) {
+    return of({
+      name: form.name,
+      email: form.email,
+      role: 'Teacher'
+    })
+  }
+
+  studentSignUp(form:any) {
+    return of({
+      name: form.name,
+      email: form.email,
+      role: 'Student'
+    })
+  }
 }

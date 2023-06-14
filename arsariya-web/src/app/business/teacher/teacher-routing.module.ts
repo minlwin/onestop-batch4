@@ -5,6 +5,7 @@ import { PublicHomeComponent } from 'src/app/commons/pages/public-home/public-ho
 import { CourseEditComponent } from './course-edit/course-edit.component';
 import { CourseDetailsComponent } from 'src/app/commons/pages/course-details/course-details.component';
 import { TeacherProfileComponent } from 'src/app/commons/pages/teacher-profile/teacher-profile.component';
+import { ClassRoomComponent } from 'src/app/commons/pages/class-room/class-room.component';
 
 const routes: Routes = [
   {path: '', component: TeacherComponent, children: [
@@ -12,6 +13,7 @@ const routes: Routes = [
     {path: 'home', component: TeacherProfileComponent},
     {path: 'course-edit', component: CourseEditComponent},
     {path: 'course-details', component: CourseDetailsComponent},
+    {path: 'class-room', component: ClassRoomComponent},
     {path: 'teacher-profile', component: TeacherProfileComponent},
     {path: '', redirectTo: '/teacher/home', pathMatch: 'full'}
   ]}

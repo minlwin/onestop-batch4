@@ -6,12 +6,14 @@ import { StudentComponent } from './student.component';
 import { StudentHomeComponent } from './student-home/student-home.component';
 import { PagesModule } from 'src/app/commons/pages/pages.module';
 import { WidgetsModule } from 'src/app/commons/widgets/widgets.module';
+import { RegistrationPaidComponent } from './registration-paid/registration-paid.component';
 
 
 @NgModule({
   declarations: [
     StudentComponent,
-    StudentHomeComponent
+    StudentHomeComponent,
+    RegistrationPaidComponent
   ],
   imports: [
     CommonModule,
