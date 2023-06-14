@@ -8,10 +8,12 @@ import { CoursesComponent } from './courses/courses.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { PublicHomeComponent } from 'src/app/commons/pages/public-home/public-home.component';
 import { PaymentMasterComponent } from './payment-master/payment-master.component';
+import { CourseDetailsComponent } from 'src/app/commons/pages/course-details/course-details.component';
 
 const routes: Routes = [
   {path: '', component: AdminComponent, children: [
     {path: 'public', component: PublicHomeComponent},
+    {path: 'course-details', component: CourseDetailsComponent},
     {path: 'payment', component: PaymentMasterComponent},
     {path: 'teachers', component: TeachersComponent},
     {path: 'students', component: StudentsComponent},

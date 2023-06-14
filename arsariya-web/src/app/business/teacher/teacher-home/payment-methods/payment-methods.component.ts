@@ -38,15 +38,19 @@ export class PaymentMethodsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.paymentMethodService.getAllPayments().subscribe(result => {
+      this.payments = result
+    })
+
+    this.search()
+  }
+
+  search() {
     if(this.email) {
       this.service.findPaymentMethod(this.email).subscribe(result => {
         this.data = result
       })
     }
-
-    this.paymentMethodService.getAllPayments().subscribe(result => {
-      this.payments = result
-    })
   }
 
   edit(data:any) {
@@ -69,7 +73,9 @@ export class PaymentMethodsComponent implements OnInit {
 
   save() {
     if(this.form.valid) {
-      this.service.savePaymentMethod(this.form.value)
+      this.service.savePaymentMethod(this.form.value).subscribe(_ => {
+        this.search()
+      })
     }
   }
 }

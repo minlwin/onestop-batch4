@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/apis/category.service';
 import { CourseService } from 'src/app/services/apis/course.service';
 
@@ -15,15 +15,25 @@ export class PublicHomeComponent implements OnInit {
   courseList:any[] = []
   searchForm:FormGroup
 
+  viewType?:string
+
   constructor(
     builder:FormBuilder,
+    route:ActivatedRoute,
     private router:Router,
     private categoryService:CategoryService,
     private courseService:CourseService) {
-    this.searchForm = builder.group({
+
+      this.searchForm = builder.group({
       keyword: ''
     })
 
+    route.queryParamMap.subscribe(map => {
+      let type = map.get('type')
+      if(type) {
+        this.viewType = type
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -47,6 +57,6 @@ export class PublicHomeComponent implements OnInit {
   }
 
   showDetails(id:number) {
-    this.router.navigate(['/anonymous', 'course-details'], {queryParams: {id: id}})
+    this.router.navigate([`/${this.viewType || 'anonymous'}`,'course-details'], {queryParams: {id: id}})
   }
 }

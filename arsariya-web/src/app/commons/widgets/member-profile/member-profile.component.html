@@ -24,12 +24,12 @@
 
     <div *ngIf="canEdit" class="mt-3 row gx-2">
       <div class="col">
-        <span class="btn btn-primary d-block">
+        <span (click)="imageInput.click()" class="btn d-block" [ngClass]="btnColor ?? 'btn-primary'">
           <i class="bi bi-camera"></i> Upload
         </span>
       </div>
       <div class="col">
-        <span (click)="edit()" class="btn btn-primary d-block">
+        <span (click)="edit()" class="btn d-block" [ngClass]="btnColor ?? 'btn-primary'">
           <i class="bi bi-pencil"></i> Edit
         </span>
       </div>
@@ -55,8 +55,12 @@
   </form>
 
   <div footer>
-    <button (click)="save()" class="btn btn-outline-primary">
+    <button (click)="save()" class="btn" [ngClass]="btnColor ?? 'btn-primary'">
       <i class="bi bi-save"></i> Save
     </button>
   </div>
 </app-modal-dialog>
+
+<form class="d-none">
+  <input (change)="uploadImage(imageInput.files)" type="file" #imageInput >
+</form>

@@ -19,6 +19,9 @@ export class MemberProfileComponent implements OnChanges{
   @Input()
   canEdit?:boolean
 
+  @Input()
+  btnColor?:string
+
   @ViewChild(ModalDialogComponent)
   modalDialog?:ModalDialogComponent
 
@@ -55,6 +58,14 @@ export class MemberProfileComponent implements OnChanges{
         this.form.patchValue(result)
         this.profile = result
         this.modalDialog?.hide()
+      })
+    }
+  }
+
+  uploadImage(files:FileList | null) {
+    if(files && files.length > 0) {
+      this.service.uploadProfileImage({loginId: this.email, image: files[0]}).subscribe(result => {
+        this.profile = result
       })
     }
   }

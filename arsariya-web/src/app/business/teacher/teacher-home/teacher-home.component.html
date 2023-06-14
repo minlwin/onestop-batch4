@@ -6,7 +6,7 @@
       <!-- Courses -->
       <div class="row row-cols-3 g-3">
         <div class="col" *ngFor="let item of courses" >
-          <app-course-item [course]="item"></app-course-item>
+          <app-course-item (showDetailsListener)="showDetails($event)" [course]="item"></app-course-item>
         </div>
       </div>
     </div>
