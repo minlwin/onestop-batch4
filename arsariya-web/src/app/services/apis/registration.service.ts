@@ -19,4 +19,8 @@ export class RegistrationService {
       }
     })
   }
+
+  purchaseCourse(form:any) {
+    return of({})
+  }
 }

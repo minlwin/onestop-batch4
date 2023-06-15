@@ -32,6 +32,7 @@ import { ClassRoomComponent } from './class-room/class-room.component';
     TeacherProfileComponent,
     PublicHomeComponent,
     ClassRoomComponent,
+    CourseCoverComponent,
   ]
 })
 export class PagesModule { }

@@ -10,7 +10,7 @@ export class CourseService {
   constructor() { }
 
   findCourseDetails(id: number):Observable<any> {
-    return of(COURSES[0])
+    return of(COURSES[0]).pipe(tap(data => data.fees = 120000))
   }
 
   searchForAdmin(form:any):Observable<ApiResult> {

@@ -28,7 +28,7 @@ export class CourseDetailsComponent {
         courseService.findCourseDetails(this.id)
           // Delete after using api
           .pipe(tap(data => {
-            data.type = security.role == 'Student' ? 'ATTEND_COURSE' : (security.role == 'Teacher' ? 'OWN_COURSE' : (security.role == 'Anonymous' ? 'PROMOTE' : 'NONE') )
+            data.type = security.role == 'Student' ? 'PROMOTE' : (security.role == 'Teacher' ? 'OWN_COURSE' : (security.role == 'Anonymous' ? 'PROMOTE' : 'NONE') )
           }))
           // Delete until here
           .subscribe(result => {

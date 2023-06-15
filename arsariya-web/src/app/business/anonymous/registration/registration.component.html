@@ -1,3 +1,33 @@
 <app-main-page icon="bi-pencil" title="Registration">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4><i class="bi bi-person"></i> Student Information</h4>
 
+          <form [formGroup]="form">
+            <app-form-group [valid]="form.get('name')?.valid ?? false" label="Student Name">
+              <input formControlName="name" type="text" class="form-control" placeholder="Enter Student Name">
+            </app-form-group>
+            <app-form-group [valid]="form.get('phone')?.valid ?? false" label="Phone Number">
+              <input formControlName="phone" type="text" class="form-control" placeholder="Enter Phone Number">
+            </app-form-group>
+            <app-form-group [valid]="form.get('email')?.valid ?? false" label="Email Address">
+              <input formControlName="email" type="text" class="form-control" placeholder="Enter Email Address">
+            </app-form-group>
+            <app-form-group [valid]="form.get('password')?.valid ?? false" label="Password">
+              <input formControlName="password" type="password" class="form-control" placeholder="Enter Password">
+            </app-form-group>
+
+            <button [class.disabled]="!form.valid" (click)="register()" type="button" class="btn btn-outline-primary">
+              <i class="bi bi-save"></i> Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <app-course-cover [dto]="course" [hideControls]="true"></app-course-cover>
+    </div>
+  </div>
 </app-main-page>

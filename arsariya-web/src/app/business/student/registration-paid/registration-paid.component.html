@@ -1,1 +1,47 @@
-<p>registration-paid works!</p>
+<app-main-page icon="bi-cart" title="Course Registration">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4>
+            <i class="bi bi-credit-card"></i> Paid Information
+          </h4>
+
+          <form [formGroup]="form">
+            <!-- Course Name -->
+            <app-form-group label="Course Name" [valid]="true">
+              <span class="form-control">{{course.name}}</span>
+            </app-form-group>
+
+            <!-- Student Name -->
+            <app-form-group label="Student Name" [valid]="true">
+              <span class="form-control">{{studentName}}</span>
+            </app-form-group>
+
+            <!-- Course Fees -->
+            <app-form-group label="Course Fees" [valid]="true">
+              <span class="form-control">{{course.fees | number}} MMK</span>
+            </app-form-group>
+
+            <!-- Payment Methods -->
+            <app-form-group label="Payment Method">
+              <select formControlName="paymentId" class="form-select">
+                <option value="0">Select Payment Method</option>
+                <option *ngFor="let item of payments" [value]="item.id">{{item.name}}</option>
+              </select>
+            </app-form-group>
+
+            <div>
+              <button [class.disabled]="!form.valid" (click)="purchase()" class="btn btn-outline-success">
+                <i class="bi bi-check"></i> Settle Payment
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <app-course-cover [hideControls]="true" [dto]="course"></app-course-cover>
+    </div>
+  </div>
+</app-main-page>

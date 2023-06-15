@@ -33,7 +33,15 @@ export class SecurityService {
   private fetchUser = (result:any) => {
     this.loginUser = result
     localStorage.setItem(LOGIN_USER_KEY, JSON.stringify(result))
-}
+  }
+
+  get loginUserName() {
+    if(this.loginUser) {
+      return this.loginUser.name
+    }
+
+    throw({message: 'You have to login again.', type: 'Auth'})
+  }
 
   get loginId():string {
     if(this.loginUser) {
