@@ -40,6 +40,18 @@ export class CourseService {
     return of(OBJECTIVES)
   }
 
+  save(value: any) {
+    const {id, ... form} = value
+    return id == 0 ? this.create(form) : this.update(id, form)
+  }
+
+  private create(form:any) {
+    return this.findCourseDetails(1)
+  }
+
+  private update(id:number, form:any) {
+    return this.findCourseDetails(1)
+  }
 }
 
 export const OBJECTIVES:any[] = [

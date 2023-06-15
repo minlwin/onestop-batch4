@@ -1,3 +1,52 @@
 <app-main-page icon="bi-pencil" title="Create Course">
 
+  <div class="row">
+    <form [formGroup]="form" class="col">
+
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="bi bi-book"></i> Course Information
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-3">
+              <!-- Image -->
+
+            </div>
+            <div class="col">
+            <!-- Name -->
+
+            <!-- Category -->
+
+            <!-- Hours -->
+
+            <!-- Fees -->
+
+            <!-- Description -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <i class="bi bi-flag"></i> Objectives
+        </div>
+
+        <div class="card-body">
+
+        </div>
+      </div>
+    </form>
+    <div class="col-3">
+      <app-member-profile profileType="Teacher" [email]="loginId"></app-member-profile>
+
+      <div class="mt-3">
+        <button class="btn btn-primary d-block w-100">
+          <i class="bi bi-save"></i> Save Course
+        </button>
+      </div>
+    </div>
+  </div>
 </app-main-page>
