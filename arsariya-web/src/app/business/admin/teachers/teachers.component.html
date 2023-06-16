@@ -4,8 +4,8 @@
     <!-- Search Form -->
     <form class="row" [formGroup]="form" searchForm>
       <div class="col-auto">
-        <app-form-group-simple label="Student">
-          <input type="text" formControlName="student" class="form-control" placeholder="Search Student Name">
+        <app-form-group-simple label="Teacher Name">
+          <input type="text" formControlName="teacher" class="form-control" placeholder="Search Student Name">
         </app-form-group-simple>
       </div>
       <div class="col-auto">
@@ -44,6 +44,13 @@
       <tbody>
         <tr *ngFor="let item of list">
           <td>{{item.name}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.phone}}</td>
+          <td>{{item.registAt}}</td>
+          <td>{{item.courseCount}}</td>
+          <td>{{item.totalFees}}</td>
+          <td>{{item.agentFees}}</td>
+          <td>{{item.netAward}}</td>
         </tr>
       </tbody>
     </table>

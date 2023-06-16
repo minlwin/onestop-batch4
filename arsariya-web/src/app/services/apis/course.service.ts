@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 import { ApiResult } from '../dto/api-result';
+import { environment } from 'src/environments/environment';
+
+const ADMIN_DOMAIN = `${environment.baseUrl}/admin/course`
+const PUBLIC_DOMAIN = `${environment.baseUrl}/public/course`
+const TEACHER_DOMAIN = `${environment.baseUrl}/teacher/course`
+const STUDENT_DOMAIN = `${environment.baseUrl}/student/course`
 
 @Injectable({
   providedIn: 'any'
@@ -9,10 +15,7 @@ export class CourseService {
 
   constructor() { }
 
-  findCourseDetails(id: number):Observable<any> {
-    return of(COURSES[0]).pipe(tap(data => data.fees = 120000))
-  }
-
+  // Admin
   searchForAdmin(form:any):Observable<ApiResult> {
     return of({
       status: 'Success',
@@ -28,6 +31,7 @@ export class CourseService {
     })
   }
 
+  // Public
   searchByCategory(id: number):Observable<any[]> {
     return this.search({category: id})
   }
@@ -40,6 +44,11 @@ export class CourseService {
     return of(OBJECTIVES)
   }
 
+  findCourseDetails(id: number):Observable<any> {
+    return of(COURSES[0]).pipe(tap(data => data.fees = 120000))
+  }
+
+  // Teacher
   save(value: any) {
     const {id, ... form} = value
     return id == 0 ? this.create(form) : this.update(id, form)
@@ -52,18 +61,28 @@ export class CourseService {
   private update(id:number, form:any) {
     return this.findCourseDetails(1)
   }
+
+  findCourseForTeacher(loginId:string) {
+    return of(COURSES)
+  }
+
+  // Student
+  searchCourseForStudent(loginId:string):Observable<any[]> {
+    return of(COURSES)
+  }
+
 }
 
-export const OBJECTIVES:any[] = [
-  {id: 1, objective: 'You will learn how to leverage the power of Java to solve tasks.'},
-  {id: 1, objective: 'You will build games and programs that use Java libraries.'},
-  {id: 1, objective: 'You will be able to use Java for your own work problems or personal projects.'},
-  {id: 1, objective: 'You will create a portfolio of Java based projects you can share.'},
-  {id: 1, objective: 'Learn to use Java professionally, learning up to Java 17!'},
-  {id: 1, objective: 'Learn advanced Java features, like the collections module and how to work with timestamps!'},
-  {id: 1, objective: 'Learn to use Object Oriented Programming with classes!'},
-  {id: 1, objective: 'Understand complex topics, like threads and concurrency.'},
-  {id: 1, objective: 'Build a complete understanding of Java from the ground up!'}
+export const OBJECTIVES:string[] = [
+  'You will learn how to leverage the power of Java to solve tasks.',
+  'You will build games and programs that use Java libraries.',
+  'You will be able to use Java for your own work problems or personal projects.',
+  'You will create a portfolio of Java based projects you can share.',
+  'Learn to use Java professionally, learning up to Java 17!',
+  'Learn advanced Java features, like the collections module and how to work with timestamps!',
+  'Learn to use Object Oriented Programming with classes!',
+  'Understand complex topics, like threads and concurrency.',
+  'Build a complete understanding of Java from the ground up!'
 ]
 
 export const COURSES:any[] = [

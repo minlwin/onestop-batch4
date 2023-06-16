@@ -10,40 +10,82 @@
         <div class="card-body">
 
           <div class="row">
-            <div class="col-3">
+            <div class="col-3 d-flex flex-column justify-content-center">
               <!-- Image -->
+              <div class="align-self-center mb-4">
+                <img src="/assets/images/java-logo.png" height="240" alt="">
+              </div>
 
+              <button *ngIf="form.get('id')?.value" (click)="uploadPhoto()" class="btn btn-outline-primary">
+                <i class="bi bi-camera"></i> Upload Photo
+              </button>
             </div>
             <div class="col">
-            <!-- Name -->
+              <!-- Name -->
+              <app-form-group [valid]="form.get('name')?.valid ?? false" label="Course Name">
+                <input type="text" formControlName="name" class="form-control" placeholder="Enter Course Name">
+              </app-form-group>
+              <!-- Category -->
+              <app-form-group [valid]="form.get('category')?.valid ?? false" label="Category">
+                <input type="text" formControlName="category" class="form-control" placeholder="Enter Category of Course">
+              </app-form-group>
 
-            <!-- Category -->
+              <div class="row">
+                <div class="col">
+                  <!-- Hours -->
+                  <app-form-group [valid]="form.get('hours')?.valid ?? false" label="Hours">
+                    <input type="number" formControlName="hours" class="form-control">
+                  </app-form-group>
+                </div>
+                <div class="col">
+                  <!-- Fees -->
+                  <app-form-group [valid]="form.get('fees')?.valid ?? false" label="Fees">
+                    <input type="number" formControlName="fees" class="form-control">
+                  </app-form-group>
+                </div>
+              </div>
 
-            <!-- Hours -->
-
-            <!-- Fees -->
-
-            <!-- Description -->
+              <!-- Description -->
+              <app-form-group-simple label="Description">
+                <textarea formControlName="description" cols="40" rows="3" class="form-control"></textarea>
+              </app-form-group-simple>
             </div>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
-          <i class="bi bi-flag"></i> Objectives
+        <div class="card-header d-flex justify-content-between">
+          <span>
+            <i class="bi bi-flag"></i> Objectives
+          </span>
+
+          <a *ngIf="objectives.valid" (click)="addObjective()" class="btn-link">
+            <i class="bi bi-plus-lg"></i>
+          </a>
         </div>
 
-        <div class="card-body">
-
+        <div formArrayName="objectives" class="card-body">
+          <div *ngFor="let item of objectives.controls; index as i" class="row gx-2">
+            <div class="col">
+              <app-form-group [valid]="item.valid" [noMargin]="objectives.controls.length - 1 == i">
+                <input type="text" [formControlName]="i" placeholder="Enter Objective of Course" class="form-control">
+              </app-form-group>
+            </div>
+            <div class="col-auto">
+              <button (click)="removeObjective(i)" class="btn btn-outline-primary">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </form>
     <div class="col-3">
-      <app-member-profile profileType="Teacher" [email]="loginId"></app-member-profile>
+      <app-member-profile profileType="Teacher" [email]="form.get('teacher')?.value"></app-member-profile>
 
       <div class="mt-3">
-        <button class="btn btn-primary d-block w-100">
+        <button (click)="save()" [class.disabled]="!form.valid" class="btn btn-primary d-block w-100">
           <i class="bi bi-save"></i> Save Course
         </button>
       </div>

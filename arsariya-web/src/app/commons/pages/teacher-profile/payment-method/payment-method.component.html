@@ -39,7 +39,7 @@
   <form body [formGroup]="form">
     <app-form-group [valid]="form.get('type')?.valid ?? false" label="Payment Type">
       <select class="form-select" formControlName="type">
-        <option value="">Select Type</option>
+        <option value="0">Select Type</option>
         <option *ngFor="let item of payments" [value]="item.id">{{item.name}}</option>
       </select>
     </app-form-group>

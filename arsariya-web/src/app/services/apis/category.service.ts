@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+const DOMAIN = `${environment.baseUrl}/public/category`
 
 @Injectable({
   providedIn: 'any'

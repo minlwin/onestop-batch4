@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/app/services/apis/course.service';
 import { SecurityService } from 'src/app/services/security/security.service';
 
@@ -12,25 +12,26 @@ import { SecurityService } from 'src/app/services/security/security.service';
 export class CourseEditComponent {
 
   form:FormGroup
-  loginId?:string
 
   constructor(
     private builder:FormBuilder,
     route:ActivatedRoute,
     security:SecurityService,
+    private router:Router,
     private courseService: CourseService) {
     this.form = builder.group({
       id: 0,
-      name: '',
-      category: '',
-      description: '',
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      description: ['', Validators.required],
       image: '',
-      hours: 0,
-      fees: 0,
+      hours: [0, Validators.min(10)],
+      fees: [0, Validators.required],
+      teacher: security.loginId,
       objectives: builder.array([])
     })
 
-    this.loginId = security.loginId
+    this.addObjective()
 
     route.queryParamMap.subscribe(map => {
       let courseId = map.get('id')
@@ -49,12 +50,14 @@ export class CourseEditComponent {
 
   save() {
     if(this.form.valid) {
-      this.courseService.save(this.form.value)
+      this.courseService.save(this.form.value).subscribe(result => {
+        this.router.navigate(['/teacher', 'course-details'], {queryParams: {id: result.id}})
+      })
     }
   }
 
   addObjective() {
-    this.objectives.push(this.builder.control(['', Validators.required]))
+    this.objectives.push(this.builder.control('', Validators.required))
   }
 
   removeObjective(index:number) {
@@ -65,14 +68,19 @@ export class CourseEditComponent {
     }
   }
 
+  uploadPhoto() {
+
+  }
+
   get objectives() {
     return this.form.get('objectives') as FormArray
   }
 
   private setObjectives(array:string[]) {
+    this.objectives.clear()
     if(array) {
       for(let item in array) {
-        this.objectives.push(this.builder.control([item, Validators.required]))
+        this.objectives.push(this.builder.control(item, [Validators.required]))
       }
     }
   }

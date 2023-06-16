@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TeacherService } from 'src/app/services/apis/teacher.service';
+import { CourseService } from 'src/app/services/apis/course.service';
 import { SecurityService } from 'src/app/services/security/security.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class TeacherProfileComponent {
   constructor(
     route:ActivatedRoute,
     private router:Router,
-    teacherService:TeacherService,
+    courseService:CourseService,
     private security:SecurityService) {
     route.queryParamMap.subscribe(map => {
 
@@ -29,7 +29,7 @@ export class TeacherProfileComponent {
       }
 
       if(this.teacherEmail) {
-        teacherService.findCourseForTeacher(this.teacherEmail).subscribe(result => {
+        courseService.findCourseForTeacher(this.teacherEmail).subscribe(result => {
           this.courses = result
         })
       }

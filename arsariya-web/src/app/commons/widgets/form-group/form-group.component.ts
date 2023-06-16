@@ -13,4 +13,7 @@ export class FormGroupComponent {
 
   @Input()
   valid = false
+
+  @Input()
+  noMargin = false
 }

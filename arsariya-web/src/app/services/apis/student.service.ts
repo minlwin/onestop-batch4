@@ -1,11 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { ApiResult } from "../dto/api-result";
-import { COURSES } from "./course.service";
+import { environment } from "src/environments/environment";
+
+const ADMIN_DOMAIN = `${environment.baseUrl}/admin/students`
+
 
 @Injectable({providedIn: 'any'})
 export class StudentService {
 
+  // Admin
   searchForAdmin(form:any):Observable<ApiResult> {
     return of({
       status: 'Success',
@@ -22,7 +26,4 @@ export class StudentService {
 
   }
 
-  searchCourseForStudent(email:string):Observable<any[]> {
-    return of(COURSES)
-  }
 }

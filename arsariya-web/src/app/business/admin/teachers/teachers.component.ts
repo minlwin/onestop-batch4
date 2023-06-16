@@ -18,7 +18,7 @@ export class TeachersComponent extends PagerListComponent{
   constructor(builder:FormBuilder, private service:TeacherService) {
     super();
     this.form = builder.group({
-      student: '',
+      teacher: '',
       email: '',
       phone: '',
       current: 1,

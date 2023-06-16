@@ -2,7 +2,6 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalDialogComponent } from 'src/app/commons/widgets/modal-dialog/modal-dialog.component';
 import { PaymentMethodService } from 'src/app/services/apis/payment.method.service';
-import { TeacherService } from 'src/app/services/apis/teacher.service';
 
 @Component({
   selector: 'app-payment-method',
@@ -24,12 +23,11 @@ export class PaymentMethodComponent {
   form:FormGroup
 
   constructor(builder:FormBuilder,
-    private service:TeacherService,
-    private paymentMethodService:PaymentMethodService) {
+    private service:PaymentMethodService) {
     this.form = builder.group({
       id: 0,
       email: ['', Validators.required],
-      type: ['', Validators.required],
+      type: [0, Validators.required],
       accountName: ['', Validators.required],
       accountNumber: ['', Validators.required]
     })
@@ -37,7 +35,7 @@ export class PaymentMethodComponent {
 
   ngOnInit(): void {
 
-    this.paymentMethodService.getAllPayments().subscribe(result => {
+    this.service.getAllPayments().subscribe(result => {
       this.payments = result
     })
 
