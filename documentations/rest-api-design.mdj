@@ -2032,7 +2032,7 @@
 															"left": 223.4169921875,
 															"top": 108,
 															"width": 449.70849609375,
-															"height": 58,
+															"height": 88,
 															"nameCompartment": {
 																"$ref": "AAAAAAGIwwE+IMvkj+o="
 															},
@@ -2890,7 +2890,7 @@
 																			"font": "Arial;13;1",
 																			"left": 386.2578125,
 																			"top": 600,
-																			"width": 124.02685546875,
+																			"width": 308.17236328125,
 																			"height": 13,
 																			"text": "TeacherPaymentApi"
 																		},
@@ -2923,7 +2923,7 @@
 																	"font": "Arial;13;0",
 																	"left": 381.2578125,
 																	"top": 593,
-																	"width": 134.02685546875,
+																	"width": 318.17236328125,
 																	"height": 25,
 																	"stereotypeLabel": {
 																		"$ref": "AAAAAAGIwwIab8y4QUc="
@@ -2950,7 +2950,7 @@
 																	"font": "Arial;13;0",
 																	"left": 381.2578125,
 																	"top": 618,
-																	"width": 134.02685546875,
+																	"width": 318.17236328125,
 																	"height": 10
 																},
 																{
@@ -2975,7 +2975,7 @@
 																			"font": "Arial;13;0",
 																			"left": 386.2578125,
 																			"top": 633,
-																			"width": 124.02685546875,
+																			"width": 308.17236328125,
 																			"height": 13,
 																			"text": "+findByTeacher(loginId: String): ApiResult",
 																			"horizontalAlignment": 0
@@ -2992,7 +2992,7 @@
 																			"font": "Arial;13;0",
 																			"left": 386.2578125,
 																			"top": 648,
-																			"width": 124.02685546875,
+																			"width": 308.17236328125,
 																			"height": 13,
 																			"text": "+create(form: TeacherPaymentDto): ApiResult",
 																			"horizontalAlignment": 0
@@ -3009,7 +3009,7 @@
 																			"font": "Arial;13;0",
 																			"left": 386.2578125,
 																			"top": 663,
-																			"width": 124.02685546875,
+																			"width": 308.17236328125,
 																			"height": 13,
 																			"text": "+update(id: int, form: TeacherPaymentDto): ApiResult",
 																			"horizontalAlignment": 0
@@ -3056,8 +3056,8 @@
 															"containerChangeable": true,
 															"left": 381.2578125,
 															"top": 593,
-															"width": 134.02685546875,
-															"height": 45,
+															"width": 318.17236328125,
+															"height": 88,
 															"nameCompartment": {
 																"$ref": "AAAAAAGIwwIab8y3Sk0="
 															},
@@ -8507,7 +8507,17 @@
 													"_parent": {
 														"$ref": "AAAAAAGIwv/CPcsjnTk="
 													},
-													"name": "entity"
+													"name": "entity",
+													"ownedElements": [
+														{
+															"_type": "UMLClassDiagram",
+															"_id": "AAAAAAGIxCTq5w9W+Qo=",
+															"_parent": {
+																"$ref": "AAAAAAGIwv/bT8tANTc="
+															},
+															"name": "Entity Classes"
+														}
+													]
 												},
 												{
 													"_type": "UMLPackage",
@@ -8515,7 +8525,17 @@
 													"_parent": {
 														"$ref": "AAAAAAGIwv/CPcsjnTk="
 													},
-													"name": "repo"
+													"name": "repo",
+													"ownedElements": [
+														{
+															"_type": "UMLClassDiagram",
+															"_id": "AAAAAAGIxA/VQtr1cpE=",
+															"_parent": {
+																"$ref": "AAAAAAGIwv/w1stdkSs="
+															},
+															"name": "Repository Classes"
+														}
+													]
 												},
 												{
 													"_type": "UMLPackage",
@@ -8523,7 +8543,17 @@
 													"_parent": {
 														"$ref": "AAAAAAGIwv/CPcsjnTk="
 													},
-													"name": "service"
+													"name": "service",
+													"ownedElements": [
+														{
+															"_type": "UMLClassDiagram",
+															"_id": "AAAAAAGIxBA5MNr9T3o=",
+															"_parent": {
+																"$ref": "AAAAAAGIwwADVMt6VBo="
+															},
+															"name": "Service Classes"
+														}
+													]
 												},
 												{
 													"_type": "UMLPackage",
