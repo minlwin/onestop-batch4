@@ -1,9 +1,9 @@
 export interface ApiResult {
   status:AipStatus
-  result:string[] | ListResult | any [] | any
+  result:string[] | PageResult | any [] | any
 }
 
-export interface ListResult {
+export interface PageResult {
   list:any[]
   pager:Pager
 }

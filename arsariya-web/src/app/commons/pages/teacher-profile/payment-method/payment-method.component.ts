@@ -2,6 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalDialogComponent } from 'src/app/commons/widgets/modal-dialog/modal-dialog.component';
 import { PaymentMethodService } from 'src/app/services/apis/payment.method.service';
+import { PaymentTypeService } from 'src/app/services/apis/payment.type.service';
 
 @Component({
   selector: 'app-payment-method',
@@ -10,6 +11,7 @@ import { PaymentMethodService } from 'src/app/services/apis/payment.method.servi
   ]
 })
 export class PaymentMethodComponent {
+
   @Input()
   email?:string
 
@@ -23,6 +25,7 @@ export class PaymentMethodComponent {
   form:FormGroup
 
   constructor(builder:FormBuilder,
+    paymentTypeService:PaymentTypeService,
     private service:PaymentMethodService) {
     this.form = builder.group({
       id: 0,
@@ -31,20 +34,16 @@ export class PaymentMethodComponent {
       accountName: ['', Validators.required],
       accountNumber: ['', Validators.required]
     })
-  }
 
-  ngOnInit(): void {
-
-    this.service.getAllPayments().subscribe(result => {
+    paymentTypeService.getAllPayments().subscribe(result => {
       this.payments = result
     })
-
     this.search()
   }
 
   search() {
     if(this.email) {
-      this.service.findPaymentMethod(this.email).subscribe(result => {
+      this.service.getOwnPayments().subscribe(result => {
         this.data = result
       })
     }
