@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/app/services/apis/course.service';
 import { PaymentMethodService } from 'src/app/services/apis/payment.method.service';
+import { PaymentTypeService } from 'src/app/services/apis/payment.type.service';
 import { RegistrationService } from 'src/app/services/apis/registration.service';
 import { BusinessException } from 'src/app/services/dto/business-exception';
 import { SecurityService } from 'src/app/services/security/security.service';
@@ -25,7 +26,7 @@ export class RegistrationPaidComponent {
     courseService:CourseService,
     builder:FormBuilder,
     security:SecurityService,
-    paymentService:PaymentMethodService,
+    paymentService:PaymentTypeService,
     private router:Router,
     private registrationService:RegistrationService) {
 

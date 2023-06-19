@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDialogComponent } from 'src/app/commons/widgets/modal-dialog/modal-dialog.component';
-import { PaymentMethodService } from 'src/app/services/apis/payment.method.service';
+import { PaymentTypeService } from 'src/app/services/apis/payment.type.service';
 
 @Component({
   templateUrl: './payment-master.component.html',
@@ -16,7 +16,7 @@ export class PaymentMasterComponent {
   @ViewChild(ModalDialogComponent)
   dialog?:ModalDialogComponent
 
-  constructor(builder:FormBuilder, private service:PaymentMethodService) {
+  constructor(builder:FormBuilder, private service:PaymentTypeService) {
     this.form = builder.group({
       id: 0,
       name: ['', Validators.required]
