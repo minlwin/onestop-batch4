@@ -3,29 +3,47 @@ package com.jdc.learners.domain.dto.vo;
 import java.time.LocalDate;
 
 import com.jdc.learners.domain.dto.TeacherPaymentDto;
+import com.jdc.learners.domain.entity.Registration;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class RegistrationVO {
 
-	public RegistrationVO() {
-	}
+	@NonNull
+	private Integer id;
 
-	private int id;
+	@NonNull
+	private Integer fees;
+
+	@NonNull
+	private String promotionCode;
+
+	@NonNull
+	private Integer discount;
+	
+	@NonNull
+	private Integer agentFees;
+
+	@NonNull
+	private LocalDate registAt;
 
 	private CourseListVO course;
 
 	private LoginUserVO student;
 
-	private LocalDate registAt;
-
 	private TeacherPaymentDto payment;
 
-	private int fees;
-
-	private String promotionCode;
-
-	private int discount;
-
+	public static RegistrationVO from(Registration entity) {
+		var vo = new RegistrationVO(entity.getId(), entity.getFees(), entity.getPromotionCode(), entity.getDiscount(), entity.getAgentFees(), entity.getRegistAt());
+		vo.setCourse(CourseListVO.from(entity.getCourse()));
+		vo.setPayment(TeacherPaymentDto.from(entity.getPaymentType()));
+		vo.setStudent(LoginUserVO.from(entity.getStudent()));
+		return vo;
+	}
 }

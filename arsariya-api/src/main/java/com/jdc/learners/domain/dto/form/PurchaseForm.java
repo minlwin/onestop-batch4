@@ -5,16 +5,13 @@ import lombok.Data;
 @Data
 public class PurchaseForm {
 
-	public PurchaseForm() {
-	}
-
-	private int courseId;
+	private Integer courseId;
 
 	private String studentId;
 
-	private int paymentId;
+	private Integer paymentId;
 
-	private int fees;
+	private Integer fees;
 
 	private String promotionCode;
 

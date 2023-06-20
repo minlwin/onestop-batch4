@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.form.CourseForm;
-import com.jdc.learners.domain.dto.vo.CourseDetailsVO;
 import com.jdc.learners.domain.dto.vo.CourseListVO;
 import com.jdc.learners.domain.service.CourseService;
 import com.jdc.learners.domain.service.TeacherService;
@@ -37,13 +36,13 @@ public class TeacherCourseApi {
 	}
 	
 	@PostMapping
-	public ApiResult<CourseDetailsVO> create(
+	public ApiResult<CourseListVO> create(
 			@Validated @RequestBody CourseForm form, BindingResult result) {
 		return ApiResult.success(courseService.create(form));
 	}
 
 	@PutMapping("{id}")
-	public ApiResult<CourseDetailsVO> update(@PathVariable int id, 
+	public ApiResult<CourseListVO> update(@PathVariable int id, 
 			@Validated @RequestBody CourseForm form, BindingResult result) {
 		return ApiResult.success(courseService.update(id, form));
 	}

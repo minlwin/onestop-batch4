@@ -1,25 +1,41 @@
 package com.jdc.learners.domain.dto.vo;
 
 import com.jdc.learners.domain.dto.MemberProfileDto;
+import com.jdc.learners.domain.entity.Course;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class CourseListVO {
 
-	public CourseListVO() {
-	}
+	@NonNull
+	private Integer id;
 
-	private int id;
-
+	@NonNull
 	private String name;
 
-	private int fees;
+	@NonNull
+	private Integer fees;
 
-	private int hours;
+	@NonNull
+	private Integer hours;
 
 	private CategoryVO category;
 
 	private MemberProfileDto teacher;
+	
+	public static CourseListVO from(Course entity) {
+		var vo = new CourseListVO(entity.getId(), entity.getName(), entity.getFees(), entity.getHours());
+		vo.setCategory(CategoryVO.from(entity.getCategory()));
+		vo.setTeacher(MemberProfileDto.from(entity.getTeacher()));
+		return vo;
+	}
 
 }

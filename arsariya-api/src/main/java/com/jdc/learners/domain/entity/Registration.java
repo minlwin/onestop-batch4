@@ -42,6 +42,8 @@ public class Registration {
 	@Column(nullable = false)
 	private int discount;
 	
+	private int agentFees;
+	
 	@Embedded
 	private AuditInfo audit = new AuditInfo();
 

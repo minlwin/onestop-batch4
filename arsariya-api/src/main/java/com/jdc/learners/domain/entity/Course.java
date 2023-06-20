@@ -38,6 +38,8 @@ public class Course {
 	private int hours;
 
 	private int fees;
+	
+	private int agentFees;
 
 	private String description;
 
