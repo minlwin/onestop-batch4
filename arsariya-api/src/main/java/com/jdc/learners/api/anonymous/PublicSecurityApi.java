@@ -35,18 +35,21 @@ public class PublicSecurityApi {
 	private SecurityContextRepository securityContextRepository;
 
 	@PostMapping
-	public ApiResult<LoginUserVO> signIn(@RequestBody @Validated SignInForm form, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
+	public ApiResult<LoginUserVO> signIn(HttpServletRequest request, HttpServletResponse response, 
+			@RequestBody @Validated SignInForm form, BindingResult result) {
 		return internalSignIn(form, request, response);
 	}
 	
 	@PostMapping("/teacher")
-	public ApiResult<LoginUserVO> teacherSignUp(@RequestBody @Validated TeacherSignUpForm form, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
+	public ApiResult<LoginUserVO> teacherSignUp(HttpServletRequest request, HttpServletResponse response, 
+			@RequestBody @Validated TeacherSignUpForm form, BindingResult result) {
 		service.create(form);
 		return internalSignIn(null, request, response);
 	}
 
 	@PostMapping("/student")
-	public ApiResult<LoginUserVO> studentSignUp(@RequestBody @Validated StudentSignUpForm form, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
+	public ApiResult<LoginUserVO> studentSignUp(HttpServletRequest request, HttpServletResponse response, 
+			@RequestBody @Validated StudentSignUpForm form, BindingResult result) {
 		service.create(form);
 		return internalSignIn(null, request, response);
 	}

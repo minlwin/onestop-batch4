@@ -17,6 +17,6 @@ export class RegistrationService {
   }
 
   purchaseCourse(form:any) {
-    return of({})
+    return this.http.post<any>(STUDENT_DOMAIN, form)
   }
 }

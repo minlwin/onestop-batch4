@@ -11,7 +11,7 @@ import com.jdc.learners.domain.dto.MemberProfileDto;
 import com.jdc.learners.domain.service.MemberProfileService;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("public/profile")
 public class PublicProfileApi {
 
 	@Autowired

@@ -67,7 +67,7 @@ export class MemberProfileComponent implements OnChanges{
 
   uploadImage(files:FileList | null) {
     if(files && files.length > 0) {
-      this.service.uploadProfileImage({loginId: this.email, image: files[0]}).subscribe(result => {
+      this.service.uploadProfileImage(files[0]).subscribe(result => {
         this.profile = result
       })
     }

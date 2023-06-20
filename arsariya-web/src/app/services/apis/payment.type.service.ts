@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 
 const ADMIN_DOMAIN = `${environment.baseUrl}/admin/payment`
@@ -13,11 +13,7 @@ export class PaymentTypeService {
 
     // Teacher & Admin
     getAllPayments():Observable<any[]> {
-      return of([
-        {id: 1, name: 'KBZ PAY'},
-        {id: 2, name: 'WAVE MONEY'},
-        {id: 3, name: 'AYA PAY'}
-      ])
+      return this.http.get<any[]>(MEMBER_DOMAIN)
     }
 
     // Admin

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiResult } from '../dto/api-result';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -45,89 +45,20 @@ export class CourseService {
   }
 
   private create(form:any) {
-    return this.findCourseDetails(1)
+    return this.http.post<any>(TEACHER_DOMAIN, form)
   }
 
   private update(id:number, form:any) {
-    return this.findCourseDetails(1)
+    return this.http.put<any>(`${TEACHER_DOMAIN}/${id}`, form)
   }
 
   findCourseForTeacher(loginId:string) {
-    return of(COURSES)
+    return this.http.get<any[]>(TEACHER_DOMAIN, {params: {loginId: loginId}})
   }
 
   // Student
   searchCourseForStudent(loginId:string):Observable<any[]> {
-    return of(COURSES)
+    return this.http.get<any[]>(STUDENT_DOMAIN, {params: {loginId: loginId}})
   }
 
 }
-
-export const OBJECTIVES:string[] = [
-  'You will learn how to leverage the power of Java to solve tasks.',
-  'You will build games and programs that use Java libraries.',
-  'You will be able to use Java for your own work problems or personal projects.',
-  'You will create a portfolio of Java based projects you can share.',
-  'Learn to use Java professionally, learning up to Java 17!',
-  'Learn advanced Java features, like the collections module and how to work with timestamps!',
-  'Learn to use Object Oriented Programming with classes!',
-  'Understand complex topics, like threads and concurrency.',
-  'Build a complete understanding of Java from the ground up!'
-]
-
-export const COURSES:any[] = [
-  {
-    id: 1,
-    name: 'Java Basic',
-    category: {
-      id: 1,
-      name: 'Computer Science'
-    },
-    description: 'Entry course of Java Programming. Basic of the basic.',
-    teacher: {
-      id: 1,
-      email: 'hank@gmail.com',
-      name: 'Mr Hank'
-    }
-  },
-  {
-    id: 1,
-    name: 'Java Basic',
-    category: {
-      id: 1,
-      name: 'Computer Science'
-    },
-    description: 'Entry course of Java Programming. Basic of the basic.',
-    teacher: {
-      id: 1,
-      name: 'Mr Hank'
-    }
-  },
-  {
-    id: 1,
-    name: 'Java Basic',
-    category: {
-      id: 1,
-      name: 'Computer Science'
-    },
-    description: 'Entry course of Java Programming. Basic of the basic.',
-    teacher: {
-      id: 1,
-      name: 'Mr Hank'
-    }
-  },
-  {
-    id: 1,
-    name: 'Java Basic',
-    category: {
-      id: 1,
-      name: 'Computer Science'
-    },
-    description: 'Entry course of Java Programming. Basic of the basic.',
-    teacher: {
-      id: 1,
-      name: 'Mr Hank'
-    }
-  },
-
-]

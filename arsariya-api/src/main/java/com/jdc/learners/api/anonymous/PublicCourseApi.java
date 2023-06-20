@@ -16,7 +16,7 @@ import com.jdc.learners.domain.dto.vo.CourseListVO;
 import com.jdc.learners.domain.service.CourseService;
 
 @RestController
-@RequestMapping("/public/course")
+@RequestMapping("public/course")
 public class PublicCourseApi {
 
 	@Autowired

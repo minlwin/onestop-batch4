@@ -12,7 +12,7 @@ import com.jdc.learners.domain.dto.vo.CategoryVO;
 import com.jdc.learners.domain.service.CategoryService;
 
 @RestController
-@RequestMapping("/public/category")
+@RequestMapping("public/category")
 public class PublicCategoryApi {
 
 	@Autowired

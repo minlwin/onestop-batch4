@@ -1,5 +1,6 @@
+import { HttpClient, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 
 const MEMBER_DOMAIN = `${environment.baseUrl}/member/profile`
@@ -8,30 +9,23 @@ const PUBLIC_DOMAIN = `${environment.baseUrl}/public/profile`
 @Injectable({providedIn: 'any'})
 export class ProfileService {
 
+  constructor(private http:HttpClient) {}
+
   // Teacher & Student
-  uploadProfileImage(form: any):Observable<any> {
-    return of({
-      id: 1,
-      name: 'Min Lwin',
-      phone: '09782003098',
-      email: 'minlwin@gmail.com',
-      image: ''
-    })
+  uploadProfileImage(file: File):Observable<any> {
+    const form = new FormData
+    form.append('file', file, file.name)
+    const request = new HttpRequest("POST", `${MEMBER_DOMAIN}/image`, form)
+    return this.http.request<any>(request)
   }
 
   saveProfile(form:any):Observable<any> {
-    return of(form)
+    return this.http.put<any>(MEMBER_DOMAIN, form)
   }
 
   // Public
   getProfile(loginId:string):Observable<any> {
-    return of({
-      id: 1,
-      name: 'Min Lwin',
-      phone: '09782003098',
-      email: 'minlwin@gmail.com',
-      image: ''
-    })
+    return this.http.get<any>(PUBLIC_DOMAIN, {params: {loginId: loginId}})
   }
 
 }
