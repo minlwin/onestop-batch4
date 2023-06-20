@@ -16,6 +16,8 @@ import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.TeacherPaymentDto;
 import com.jdc.learners.domain.service.PaymentMethodService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @RestController
 @RequestMapping("teacher/payment")
 public class TeacherPaymentMethodApi {
@@ -24,7 +26,7 @@ public class TeacherPaymentMethodApi {
 
 	@GetMapping
 	public ApiResult<List<TeacherPaymentDto>> getOwnPayments() {
-		return ApiResult.success(service.getOwnPayments());
+		return service.getOwnPayments().map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
 	}
 
 	@PostMapping

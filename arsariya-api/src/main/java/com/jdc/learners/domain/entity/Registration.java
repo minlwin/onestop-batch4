@@ -31,7 +31,7 @@ public class Registration {
 	private LocalDate registAt;
 
 	@ManyToOne(optional = false)
-	private TeacherPayment paymentType;
+	private PaymentType paymentType;
 
 	@Column(nullable = false)
 	private int fees;

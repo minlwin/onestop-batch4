@@ -2,29 +2,36 @@ package com.jdc.learners.domain.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jdc.learners.domain.dto.PaymentTypeDto;
 import com.jdc.learners.domain.repo.PaymentTypeRepo;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
+@Transactional
 public class PaymentTypeService {
 
+	@Autowired
 	private PaymentTypeRepo repo;
 
+	@Transactional(readOnly = true)
 	public List<PaymentTypeDto> getAll() {
-		// TODO implement here
-		return null;
+		return repo.findAll().stream().map(PaymentTypeDto::from).toList();
 	}
 
 	public PaymentTypeDto create(PaymentTypeDto form) {
-		// TODO implement here
-		return null;
+		var entity = repo.save(form.entity());
+		return PaymentTypeDto.from(entity);
 	}
 
 	public PaymentTypeDto update(int id, PaymentTypeDto form) {
-		// TODO implement here
-		return null;
+		var entity = repo.findById(id).orElseThrow(EntityNotFoundException::new);
+		entity.setName(form.getName());
+		return PaymentTypeDto.from(entity);
 	}
 
 }

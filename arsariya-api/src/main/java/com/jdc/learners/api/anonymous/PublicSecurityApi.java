@@ -44,14 +44,14 @@ public class PublicSecurityApi {
 	public ApiResult<LoginUserVO> teacherSignUp(HttpServletRequest request, HttpServletResponse response, 
 			@RequestBody @Validated TeacherSignUpForm form, BindingResult result) {
 		service.create(form);
-		return internalSignIn(null, request, response);
+		return internalSignIn(form.signIn(), request, response);
 	}
 
 	@PostMapping("/student")
 	public ApiResult<LoginUserVO> studentSignUp(HttpServletRequest request, HttpServletResponse response, 
 			@RequestBody @Validated StudentSignUpForm form, BindingResult result) {
 		service.create(form);
-		return internalSignIn(null, request, response);
+		return internalSignIn(form.signIn(), request, response);
 	}
 	
 	private ApiResult<LoginUserVO> internalSignIn(SignInForm form, HttpServletRequest request, HttpServletResponse response) {

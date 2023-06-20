@@ -12,6 +12,8 @@ import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.vo.CourseListVO;
 import com.jdc.learners.domain.service.StudentService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @RestController
 @RequestMapping("student/course")
 public class StudentCourseApi {
@@ -21,7 +23,7 @@ public class StudentCourseApi {
 
 	@GetMapping
 	public ApiResult<List<CourseListVO>> search(@RequestParam String loginId) {
-		return service.findCourseForStudent(loginId).map(ApiResult::success).orElseThrow();
+		return service.findCourseForStudent(loginId).map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
 	}
 
 }

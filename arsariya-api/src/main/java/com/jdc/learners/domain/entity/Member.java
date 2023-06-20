@@ -9,9 +9,11 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 @Entity
 @Table(name = "MEMBER")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -24,5 +26,9 @@ public abstract class Member extends Account {
 
 	@Column(name = "regist_at")
 	private LocalDate registAt;
+	
+	protected Member(Role role) {
+		super(role);
+	}
 
 }

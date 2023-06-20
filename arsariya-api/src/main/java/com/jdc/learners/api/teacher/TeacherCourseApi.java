@@ -20,6 +20,8 @@ import com.jdc.learners.domain.dto.vo.CourseListVO;
 import com.jdc.learners.domain.service.CourseService;
 import com.jdc.learners.domain.service.TeacherService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @RestController
 @RequestMapping("teacher/course")
 public class TeacherCourseApi {
@@ -32,7 +34,7 @@ public class TeacherCourseApi {
 	
 	@GetMapping
 	public ApiResult<List<CourseListVO>> findCoursesForTeacher(@RequestParam String loginId) {
-		return teacherService.findCoursesForTeacher(loginId).map(ApiResult::success).orElseThrow();
+		return teacherService.findCoursesForTeacher(loginId).map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
 	}
 	
 	@PostMapping

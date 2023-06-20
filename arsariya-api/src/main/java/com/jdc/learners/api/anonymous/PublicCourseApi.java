@@ -15,6 +15,8 @@ import com.jdc.learners.domain.dto.vo.CourseDetailsVO;
 import com.jdc.learners.domain.dto.vo.CourseListVO;
 import com.jdc.learners.domain.service.CourseService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @RestController
 @RequestMapping("public/course")
 public class PublicCourseApi {
@@ -33,12 +35,12 @@ public class PublicCourseApi {
 
 	@GetMapping("{id}/objectives")
 	public ApiResult<List<String>> findObjective(int id) {
-		return service.findObjective(id).map(ApiResult::success).orElseThrow();
+		return service.findObjective(id).map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
 	}
 
 	@GetMapping("{id}")
 	public ApiResult<CourseDetailsVO> findDetails(int id) {
-		return service.findDetails(id).map(ApiResult::success).orElseThrow();
+		return service.findDetails(id).map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
 	}
 
 }

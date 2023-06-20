@@ -2,7 +2,7 @@ package com.jdc.learners.domain.dto.vo;
 
 import java.time.LocalDate;
 
-import com.jdc.learners.domain.dto.TeacherPaymentDto;
+import com.jdc.learners.domain.dto.PaymentTypeDto;
 import com.jdc.learners.domain.entity.Registration;
 
 import lombok.Data;
@@ -37,12 +37,12 @@ public class RegistrationVO {
 
 	private LoginUserVO student;
 
-	private TeacherPaymentDto payment;
+	private PaymentTypeDto payment;
 
 	public static RegistrationVO from(Registration entity) {
 		var vo = new RegistrationVO(entity.getId(), entity.getFees(), entity.getPromotionCode(), entity.getDiscount(), entity.getAgentFees(), entity.getRegistAt());
 		vo.setCourse(CourseListVO.from(entity.getCourse()));
-		vo.setPayment(TeacherPaymentDto.from(entity.getPaymentType()));
+		vo.setPayment(PaymentTypeDto.from(entity.getPaymentType()));
 		vo.setStudent(LoginUserVO.from(entity.getStudent()));
 		return vo;
 	}

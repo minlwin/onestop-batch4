@@ -17,5 +17,9 @@ public class Teacher extends Member {
 
 	@OneToMany(mappedBy = "teacher")
 	private List<Course> courses;
-
+	
+	public Teacher() {
+		super(Role.Teacher);
+	}
+	
 }

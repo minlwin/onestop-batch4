@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -20,6 +22,7 @@ import com.jdc.learners.domain.entity.Category;
 import com.jdc.learners.domain.entity.Course;
 import com.jdc.learners.domain.repo.CategoryRepo;
 import com.jdc.learners.domain.repo.CourseRepo;
+import com.jdc.learners.domain.repo.TeacherRepo;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -32,10 +35,16 @@ public class CourseService {
 
 	@Autowired
 	private CategoryRepo categoryRepo;
+	
+	@Autowired
+	private TeacherRepo teacherRepo;
 
 	@Transactional
+	@PreAuthorize("hasAuthority('Teacher')")
 	public CourseListVO create(CourseForm form) {
 		
+		var teacher = teacherRepo.findOneByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow(EntityNotFoundException::new);
+
 		var entity = new Course();
 		entity.setName(form.getName());
 		entity.setCategory(getCategory(form.getCategory()));
@@ -45,12 +54,15 @@ public class CourseService {
 		entity.setDescription(form.getDescription());
 		entity.setObjectives(form.getObjectives());
 		
+		entity.setTeacher(teacher);
+		
 		entity = courseRepo.save(entity);
 
 		return CourseListVO.from(entity);
 	}
 
 	@Transactional
+	@PreAuthorize("hasAuthority('Teacher')")
 	public CourseListVO update(int id, CourseForm form) {
 		
 		var entity = courseRepo.findById(id).orElseThrow(EntityNotFoundException::new);
@@ -76,7 +88,8 @@ public class CourseService {
 
 	public PagerResult<CourseListVO> search(Optional<Integer> category, Optional<String> keyword, int current, int size) {
 		
-		var specification = withCategory(category).and(withKeyword(keyword));
+		var specification = withCategory(category)
+				.and(withKeyword(keyword));
 		
 		var page = courseRepo.findAll(specification, 
 				PageRequest.of(current, size)).map(t -> CourseListVO.from(t));
@@ -88,8 +101,10 @@ public class CourseService {
 		
 		var specification = withTeacher(teacher).and(withCourse(course)).and(withFrom(from)).and(withTo(to));
 		
+		var page = courseRepo.findAll(specification, 
+				PageRequest.of(current, size)).map(t -> CourseAdminVO.from(t));
 		
-		return null;
+		return PagerResult.from(page);
 	}
 
 	private Category getCategory(String category) {
@@ -98,7 +113,7 @@ public class CourseService {
 
 	private Specification<Course> withCategory(Optional<Integer> data) {
 		if(data.filter(a -> a > 0).isPresent()) {
-			
+			// TODO
 		}
 		
 		return Specification.where(null);
@@ -106,7 +121,7 @@ public class CourseService {
 	
 	private Specification<Course> withKeyword(Optional<String> data) {
 		if(data.filter(StringUtils::hasLength).isPresent()) {
-			
+			// TODO
 		}
 		
 		return Specification.where(null);
@@ -114,7 +129,7 @@ public class CourseService {
 	
 	private Specification<Course> withTeacher(Optional<String> data) {
 		if(data.filter(StringUtils::hasLength).isPresent()) {
-			
+			// TODO
 		}
 		
 		return Specification.where(null);
@@ -122,7 +137,7 @@ public class CourseService {
 	
 	private Specification<Course> withCourse(Optional<String> data) {
 		if(data.filter(StringUtils::hasLength).isPresent()) {
-			
+			// TODO
 		}
 		
 		return Specification.where(null);
@@ -130,7 +145,7 @@ public class CourseService {
 	
 	private Specification<Course> withFrom(Optional<LocalDate> data) {
 		if(data.isPresent()) {
-			
+			// TODO
 		}
 		
 		return Specification.where(null);
@@ -138,7 +153,7 @@ public class CourseService {
 
 	private Specification<Course> withTo(Optional<LocalDate> data) {
 		if(data.isPresent()) {
-			
+			// TODO
 		}
 		
 		return Specification.where(null);

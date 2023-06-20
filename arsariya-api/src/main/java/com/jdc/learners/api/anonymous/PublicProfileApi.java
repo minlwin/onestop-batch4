@@ -10,6 +10,8 @@ import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.MemberProfileDto;
 import com.jdc.learners.domain.service.MemberProfileService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @RestController
 @RequestMapping("public/profile")
 public class PublicProfileApi {
@@ -19,7 +21,7 @@ public class PublicProfileApi {
 
 	@GetMapping
 	public ApiResult<MemberProfileDto> getProfile(@RequestParam String loginId) {
-		return service.getProfile(loginId).map(ApiResult::success).orElseThrow();
+		return service.getProfile(loginId).map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
 	}
 
 }

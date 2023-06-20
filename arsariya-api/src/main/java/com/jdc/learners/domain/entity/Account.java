@@ -10,11 +10,16 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "ACCOUNT")
 @Inheritance(strategy = InheritanceType.JOINED)
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Account {
 
 	@Id
@@ -27,6 +32,7 @@ public class Account {
 	@Column(nullable = false, unique = true)
 	private String email;
 
+	@NonNull
 	@Column(nullable = false)
 	private Role role;
 

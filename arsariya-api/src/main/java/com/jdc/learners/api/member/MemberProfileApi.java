@@ -15,6 +15,8 @@ import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.MemberProfileDto;
 import com.jdc.learners.domain.service.MemberProfileService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @RestController
 @RequestMapping("member/profile")
 public class MemberProfileApi {
@@ -24,12 +26,12 @@ public class MemberProfileApi {
 	
 	@PostMapping("image")
 	public ApiResult<MemberProfileDto> uploadProfileImage(@RequestParam MultipartFile file) {
-		return service.uploadProfileImage(file).map(ApiResult::success).orElseThrow();
+		return service.uploadProfileImage(file).map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
 	}
 
 	@PutMapping
 	public ApiResult<MemberProfileDto> saveProfile(@RequestBody @Validated MemberProfileDto form, BindingResult result) {
-		return service.saveProfile(form).map(ApiResult::success).orElseThrow();
+		return service.saveProfile(form).map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
 	}
 
 }
