@@ -3,7 +3,6 @@ package com.jdc.learners.api.anonymous;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,9 +30,6 @@ public class PublicSecurityApi {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-	@Autowired
-	private SecurityContextRepository securityContextRepository;
-
 	@PostMapping
 	public ApiResult<LoginUserVO> signIn(HttpServletRequest request, HttpServletResponse response, 
 			@RequestBody @Validated SignInForm form, BindingResult result) {
@@ -57,7 +53,6 @@ public class PublicSecurityApi {
 	private ApiResult<LoginUserVO> internalSignIn(SignInForm form, HttpServletRequest request, HttpServletResponse response) {
 		var authentication = authenticationManager.authenticate(form.authentication());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		securityContextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
 		return null;
 	}
 

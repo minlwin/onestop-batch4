@@ -4693,23 +4693,6 @@
 																			"height": 13,
 																			"text": "-authenticationManager: AuthenticationManager",
 																			"horizontalAlignment": 0
-																		},
-																		{
-																			"_type": "UMLAttributeView",
-																			"_id": "AAAAAAGI1FnokxGV1fc=",
-																			"_parent": {
-																				"$ref": "AAAAAAGIwwN0xs2PM6o="
-																			},
-																			"model": {
-																				"$ref": "AAAAAAGI1AUiTusMgac="
-																			},
-																			"font": "Arial;13;0",
-																			"left": 251.74462890625,
-																			"top": 1326,
-																			"width": 393.7705078125,
-																			"height": 13,
-																			"text": "-securityContextHolderRepository: SecurityContextRepository",
-																			"horizontalAlignment": 0
 																		}
 																	],
 																	"font": "Arial;13;0",
@@ -5570,16 +5553,6 @@
 																	"name": "authenticationManager",
 																	"visibility": "private",
 																	"type": "AuthenticationManager"
-																},
-																{
-																	"_type": "UMLAttribute",
-																	"_id": "AAAAAAGI1AUiTusMgac=",
-																	"_parent": {
-																		"$ref": "AAAAAAGIwwN0xs2H5TU="
-																	},
-																	"name": "securityContextHolderRepository",
-																	"visibility": "private",
-																	"type": "SecurityContextRepository"
 																}
 															],
 															"operations": [
@@ -6369,30 +6342,13 @@
 																					"height": 13,
 																					"text": "-authenticationManager: AuthenticationManager",
 																					"horizontalAlignment": 0
-																				},
-																				{
-																					"_type": "UMLAttributeView",
-																					"_id": "AAAAAAGI1FnolBGeVqg=",
-																					"_parent": {
-																						"$ref": "AAAAAAGIwxAJtdA6y5E="
-																					},
-																					"model": {
-																						"$ref": "AAAAAAGI1AUiTusMgac="
-																					},
-																					"font": "Arial;13;0",
-																					"left": 1729.20849609375,
-																					"top": 80,
-																					"width": 393.7705078125,
-																					"height": 13,
-																					"text": "-securityContextHolderRepository: SecurityContextRepository",
-																					"horizontalAlignment": 0
 																				}
 																			],
 																			"font": "Arial;13;0",
 																			"left": 1724.20849609375,
 																			"top": 45,
 																			"width": 403.7705078125,
-																			"height": 53
+																			"height": 38
 																		},
 																		{
 																			"_type": "UMLOperationCompartmentView",
@@ -6415,7 +6371,7 @@
 																					},
 																					"font": "Arial;13;0",
 																					"left": 1729.20849609375,
-																					"top": 103,
+																					"top": 88,
 																					"width": 393.7705078125,
 																					"height": 13,
 																					"text": "+signIn(form: SignInForm): ApiResult",
@@ -6432,7 +6388,7 @@
 																					},
 																					"font": "Arial;13;0",
 																					"left": 1729.20849609375,
-																					"top": 118,
+																					"top": 103,
 																					"width": 393.7705078125,
 																					"height": 13,
 																					"text": "+teacherSignUp(form: TeacherSignUpForm): ApiResult",
@@ -6449,7 +6405,7 @@
 																					},
 																					"font": "Arial;13;0",
 																					"left": 1729.20849609375,
-																					"top": 133,
+																					"top": 118,
 																					"width": 393.7705078125,
 																					"height": 13,
 																					"text": "+studentSignUp(form: StudentSignUpForm): ApiResult",
@@ -6458,7 +6414,7 @@
 																			],
 																			"font": "Arial;13;0",
 																			"left": 1724.20849609375,
-																			"top": 98,
+																			"top": 83,
 																			"width": 403.7705078125,
 																			"height": 53
 																		},
