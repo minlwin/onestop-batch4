@@ -1,4 +1,5 @@
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +14,8 @@ import { WidgetsModule } from './commons/widgets/widgets.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    WidgetsModule
+    WidgetsModule,
+    HttpClientModule
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppExceptionHandler}

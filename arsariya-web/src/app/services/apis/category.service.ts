@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const DOMAIN = `${environment.baseUrl}/public/category`
@@ -9,16 +10,9 @@ const DOMAIN = `${environment.baseUrl}/public/category`
 })
 export class CategoryService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   findAll():Observable<any[]> {
-    return of(
-      [
-        {id: 1, name: 'Computer Science'},
-        {id: 2, name: 'Japanese Language'},
-        {id: 3, name: 'ICGSE O Level'},
-      ]
-    )
+    return this.http.get<any[]>(DOMAIN)
   }
-
 }

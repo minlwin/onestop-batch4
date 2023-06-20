@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -7,6 +8,8 @@ const MEMBER_DOMAIN = `${environment.baseUrl}/member/payment`
 
 @Injectable({providedIn: 'any'})
 export class PaymentTypeService {
+
+  constructor(private http:HttpClient) {}
 
     // Teacher & Admin
     getAllPayments():Observable<any[]> {
@@ -24,10 +27,10 @@ export class PaymentTypeService {
     }
 
     private create(form:any):Observable<any> {
-      return of(form)
+      return this.http.post(ADMIN_DOMAIN, form)
     }
 
     private update(id:number, form:any):Observable<any> {
-      return of(form)
+      return this.http.put(`${ADMIN_DOMAIN}/${id}`, form)
     }
 }

@@ -1,37 +1,25 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { LoginUser } from "../dto/login-user";
 import { environment } from "src/environments/environment";
+import { HttpClient } from "@angular/common/http";
 
 const DOMAIN = `${environment.baseUrl}/public/security`
 
 @Injectable({providedIn: 'any'})
 export class SecurityApi {
 
+  constructor(private http:HttpClient) {}
+
   signIn(form:any):Observable<LoginUser> {
-    return of({
-      id: 1,
-      name: form.password,
-      email: form.email,
-      role: form.password
-    })
+    return this.http.post<LoginUser>(DOMAIN, form)
   }
 
   teacherSignUp(form:any) {
-    return of({
-      id: 1,
-      name: form.name,
-      email: form.email,
-      role: 'Teacher'
-    })
+    return this.http.post<LoginUser>(`${DOMAIN}/teacher`, form)
   }
 
   studentSignUp(form:any) {
-    return of({
-      id: 1,
-      name: form.name,
-      email: form.email,
-      role: 'Student'
-    })
+    return this.http.post<LoginUser>(`${DOMAIN}/student`, form)
   }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ApiResult } from '../dto/api-result';
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 const ADMIN_DOMAIN = `${environment.baseUrl}/admin/course`
 const PUBLIC_DOMAIN = `${environment.baseUrl}/public/course`
@@ -13,22 +14,11 @@ const STUDENT_DOMAIN = `${environment.baseUrl}/student/course`
 })
 export class CourseService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   // Admin
   searchForAdmin(form:any):Observable<ApiResult> {
-    return of({
-      status: 'Success',
-      result: {
-        list: [],
-        pager: {
-          current: 4,
-          size: 10,
-          totalCount: 51,
-          totalPage: 6
-        }
-      }
-    })
+    return this.http.get<ApiResult>(ADMIN_DOMAIN, {params: form})
   }
 
   // Public
@@ -37,15 +27,15 @@ export class CourseService {
   }
 
   search(form: any):Observable<any[]> {
-    return of(COURSES)
+    return this.http.get<any[]>(PUBLIC_DOMAIN, {params: form})
   }
 
   findObjectivesForCourse(courseId:number) {
-    return of(OBJECTIVES)
+    return this.http.get<string[]>(`${PUBLIC_DOMAIN}/${courseId}/objectives`)
   }
 
   findCourseDetails(id: number):Observable<any> {
-    return of(COURSES[0]).pipe(tap(data => data.fees = 120000))
+    return this.http.get<any>(`${PUBLIC_DOMAIN}/${id}`)
   }
 
   // Teacher
