@@ -1,5 +1,7 @@
 package com.jdc.learners;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.jdc.learners.security.JwtTokenSecurityFilter;
+import com.jdc.learners.utils.RestSecurityExceptionHandler;
 
 @Configuration
 @EnableJpaAuditing
@@ -52,6 +55,13 @@ public class SecurityConfig {
 		
 		// Add Jwt Token Security Filter before authentication token
 		http.addFilterBefore(jwtTokenSecurityFilter, UsernamePasswordAuthenticationFilter.class);
+		
+		http.exceptionHandling(config -> {
+			Optional.of(new RestSecurityExceptionHandler()).ifPresent(handler -> {
+				config.authenticationEntryPoint(handler);
+				config.accessDeniedHandler(handler);
+			});
+		});
 		
 		return http.build();
 	}
