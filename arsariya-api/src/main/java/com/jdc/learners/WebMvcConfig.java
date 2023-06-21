@@ -13,6 +13,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
 
 	@Value("${app.file.path.image}")
 	private String imagePath;
+	@Value("${app.jwt.token.name}")
+	private String tokenName;
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -24,6 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
 			.allowedOriginPatterns("*")
-			.allowedHeaders("*");
+			.allowedHeaders("*")
+			.exposedHeaders(tokenName);
 	}
 }

@@ -41,7 +41,7 @@ public class CourseDetailsVO {
 
 	
 	public static CourseDetailsVO from(Course entity) {
-		var vo = new CourseDetailsVO(entity.getId(), entity.getName(), entity.getFees(), entity.getHours(), entity.getDescription(), entity.getAudit().getUpdateAt());
+		var vo = new CourseDetailsVO(entity.getId(), entity.getName(), entity.getFees(), entity.getHours(), entity.getDescription(), entity.getAudit().getCreateAt());
 		vo.setCategory(CategoryVO.from(entity.getCategory()));
 		vo.setTeacher(MemberProfileDto.from(entity.getTeacher()));
 		vo.setStudents(entity.getRegistrations().size());

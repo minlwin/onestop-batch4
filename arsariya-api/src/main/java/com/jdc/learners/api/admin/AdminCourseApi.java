@@ -29,7 +29,9 @@ public class AdminCourseApi {
 			@RequestParam Optional<LocalDate> to, 
 			@RequestParam(required = false, defaultValue = "0") int current, 
 			@RequestParam(required = false, defaultValue = "0") int size) {
+		
 		var result = service.searchForAdmin(teacher, course, from, to, current, size);
+		
 		return ApiResult.success(result);
 	}
 

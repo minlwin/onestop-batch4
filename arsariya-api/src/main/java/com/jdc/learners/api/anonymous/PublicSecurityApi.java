@@ -17,8 +17,7 @@ import com.jdc.learners.domain.dto.form.TeacherSignUpForm;
 import com.jdc.learners.domain.dto.vo.LoginUserVO;
 import com.jdc.learners.domain.service.SecurityService;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("public/security")
@@ -31,29 +30,41 @@ public class PublicSecurityApi {
 	private AuthenticationManager authenticationManager;
 
 	@PostMapping
-	public ApiResult<LoginUserVO> signIn(HttpServletRequest request, HttpServletResponse response, 
+	public ApiResult<LoginUserVO> signIn( 
 			@RequestBody @Validated SignInForm form, BindingResult result) {
-		return internalSignIn(form, request, response);
+		return internalSignIn(form);
 	}
 	
 	@PostMapping("/teacher")
-	public ApiResult<LoginUserVO> teacherSignUp(HttpServletRequest request, HttpServletResponse response, 
+	public ApiResult<LoginUserVO> teacherSignUp( 
 			@RequestBody @Validated TeacherSignUpForm form, BindingResult result) {
+		// Create Teacher
 		service.create(form);
-		return internalSignIn(form.signIn(), request, response);
+		
+		// Sign In
+		return internalSignIn(form.signIn());
 	}
 
 	@PostMapping("/student")
-	public ApiResult<LoginUserVO> studentSignUp(HttpServletRequest request, HttpServletResponse response, 
+	public ApiResult<LoginUserVO> studentSignUp( 
 			@RequestBody @Validated StudentSignUpForm form, BindingResult result) {
+		// Crate Student
 		service.create(form);
-		return internalSignIn(form.signIn(), request, response);
+		
+		// Sign In
+		return internalSignIn(form.signIn());
 	}
 	
-	private ApiResult<LoginUserVO> internalSignIn(SignInForm form, HttpServletRequest request, HttpServletResponse response) {
+	private ApiResult<LoginUserVO> internalSignIn(SignInForm form) {
+		// Check User
 		var authentication = authenticationManager.authenticate(form.authentication());
+		
+		// Set Authentication Result to Security Context of current thread
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		return null;
+		
+		// Find Login User
+		return service.findLoginUser(form.getEmail()).map(ApiResult::success)
+				.orElseThrow(EntityNotFoundException::new);
 	}
 
 }

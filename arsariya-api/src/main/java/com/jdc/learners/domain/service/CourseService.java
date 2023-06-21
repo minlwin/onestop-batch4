@@ -53,7 +53,6 @@ public class CourseService {
 		entity.setImage(form.getImage());
 		entity.setDescription(form.getDescription());
 		entity.setObjectives(form.getObjectives());
-		
 		entity.setTeacher(teacher);
 		
 		entity = courseRepo.save(entity);
@@ -92,7 +91,7 @@ public class CourseService {
 				.and(withKeyword(keyword));
 		
 		var page = courseRepo.findAll(specification, 
-				PageRequest.of(current, size)).map(t -> CourseListVO.from(t));
+				PageRequest.of(current, size)).map(CourseListVO::from);
 		
 		return PagerResult.from(page);
 	}
@@ -102,7 +101,7 @@ public class CourseService {
 		var specification = withTeacher(teacher).and(withCourse(course)).and(withFrom(from)).and(withTo(to));
 		
 		var page = courseRepo.findAll(specification, 
-				PageRequest.of(current, size)).map(t -> CourseAdminVO.from(t));
+				PageRequest.of(current, size)).map(CourseAdminVO::from);
 		
 		return PagerResult.from(page);
 	}
