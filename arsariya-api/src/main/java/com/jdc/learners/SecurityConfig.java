@@ -40,7 +40,7 @@ public class SecurityConfig {
 			config.requestMatchers("/admin/**").hasAuthority("Admin");
 			config.requestMatchers("/teacher/**").hasAnyAuthority("Admin", "Teacher");
 			config.requestMatchers("/member/**").hasAnyAuthority("Admin", "Teacher", "Student");
-			config.requestMatchers("/student/**").hasAuthority("Student");
+			config.requestMatchers("/student/**").hasAnyAuthority("Admin", "Student");
 			config.anyRequest().denyAll();
 		});
 		

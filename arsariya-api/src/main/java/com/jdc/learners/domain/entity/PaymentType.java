@@ -1,8 +1,11 @@
 package com.jdc.learners.domain.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "PAYMENT_TYPE")
 @NoArgsConstructor
 @RequiredArgsConstructor
+@EntityListeners(value = AuditingEntityListener.class)
 public class PaymentType {
 
 	@Id
