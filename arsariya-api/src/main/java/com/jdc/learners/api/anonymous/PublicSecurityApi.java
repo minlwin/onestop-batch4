@@ -1,5 +1,7 @@
 package com.jdc.learners.api.anonymous;
 
+import static com.jdc.learners.utils.ExceptionUtils.keyNotFound;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,9 +17,8 @@ import com.jdc.learners.domain.dto.form.SignInForm;
 import com.jdc.learners.domain.dto.form.StudentSignUpForm;
 import com.jdc.learners.domain.dto.form.TeacherSignUpForm;
 import com.jdc.learners.domain.dto.vo.LoginUserVO;
+import com.jdc.learners.domain.entity.Account;
 import com.jdc.learners.domain.service.SecurityService;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("public/security")
@@ -64,7 +65,7 @@ public class PublicSecurityApi {
 		
 		// Find Login User
 		return service.findLoginUser(form.getEmail()).map(ApiResult::success)
-				.orElseThrow(EntityNotFoundException::new);
+				.orElseThrow(() -> keyNotFound(Account.class, "email", form.getEmail()));
 	}
 
 }

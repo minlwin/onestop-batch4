@@ -21,7 +21,7 @@ public class AppUserDetailsService implements UserDetailsService {
 		return repo.findOneByEmail(username).map(a -> User.withUsername(username)
 				.password(a.getPassword())
 				.authorities(a.getRole().name())
-				.accountLocked(!a.isActivated())
+				.disabled(!a.isActivated())
 				.accountExpired(a.getAudit().isDeleted())
 				.build())
 				.orElseThrow(() -> new UsernameNotFoundException(username));

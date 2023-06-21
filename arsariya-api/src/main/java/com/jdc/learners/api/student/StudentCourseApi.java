@@ -1,5 +1,7 @@
 package com.jdc.learners.api.student;
 
+import static com.jdc.learners.utils.ExceptionUtils.keyNotFound;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.vo.CourseListVO;
+import com.jdc.learners.domain.entity.Student;
 import com.jdc.learners.domain.service.StudentService;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("student/course")
@@ -23,7 +24,7 @@ public class StudentCourseApi {
 
 	@GetMapping
 	public ApiResult<List<CourseListVO>> search(@RequestParam String loginId) {
-		return service.findCourseForStudent(loginId).map(ApiResult::success).orElseThrow(EntityNotFoundException::new);
+		return service.findCourseForStudent(loginId).map(ApiResult::success).orElseThrow(() -> keyNotFound(Student.class, "email", loginId));
 	}
 
 }
