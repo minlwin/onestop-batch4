@@ -39,7 +39,7 @@ public class RegistrationService {
 	
 	private Specification<Registration> withStudent(Optional<String> data) {
 		if(data.filter(StringUtils::hasLength).isPresent()) {
-			// TODO
+			return (root, query, cb) -> cb.like(cb.lower(root.get("student").get("name")), data.get().toLowerCase().concat("%")); 
 		}
 		
 		return Specification.where(null);		
@@ -47,7 +47,7 @@ public class RegistrationService {
 	
 	private Specification<Registration> withCourse(Optional<String> data) {
 		if(data.filter(StringUtils::hasLength).isPresent()) {
-			// TODO
+			return (root, query, cb) -> cb.like(cb.lower(root.get("course").get("name")), data.get().toLowerCase().concat("%")); 
 		}
 		
 		return Specification.where(null);		
