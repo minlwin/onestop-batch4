@@ -29,7 +29,7 @@ public class PublicCourseApi {
 			@RequestParam Optional<Integer> category, 
 			@RequestParam Optional<String> keyword, 
 			@RequestParam(required = false, defaultValue = "0") int current, 
-			@RequestParam(required = false, defaultValue = "0") int size) {
+			@RequestParam(required = false, defaultValue = "10") int size) {
 		return ApiResult.success(service.search(category, keyword, current, size));
 	}
 

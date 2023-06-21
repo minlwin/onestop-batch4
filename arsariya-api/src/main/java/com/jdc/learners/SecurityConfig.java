@@ -39,10 +39,12 @@ public class SecurityConfig {
 			config.requestMatchers("/public/**").permitAll();
 			config.requestMatchers("/admin/**").hasAuthority("Admin");
 			config.requestMatchers("/teacher/**").hasAnyAuthority("Admin", "Teacher");
-			config.requestMatchers("/member/**").hasAnyAuthority("Teacher", "Student");
+			config.requestMatchers("/member/**").hasAnyAuthority("Admin", "Teacher", "Student");
 			config.requestMatchers("/student/**").hasAuthority("Student");
 			config.anyRequest().denyAll();
 		});
+		
+		http.cors(config -> {});
 		
 		http.csrf(config -> config.disable());
 		

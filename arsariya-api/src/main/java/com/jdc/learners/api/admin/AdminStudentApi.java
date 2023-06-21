@@ -27,7 +27,7 @@ public class AdminStudentApi {
 			@RequestParam Optional<LocalDate> from, 
 			@RequestParam Optional<LocalDate> to, 
 			@RequestParam(required = false, defaultValue = "0") int current, 
-			@RequestParam(required = false, defaultValue = "0") int size) {
+			@RequestParam(required = false, defaultValue = "10") int size) {
 		return ApiResult.success(service.search(student, from, to, current, size));
 	}
 
