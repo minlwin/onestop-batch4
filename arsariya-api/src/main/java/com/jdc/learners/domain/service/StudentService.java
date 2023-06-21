@@ -1,5 +1,8 @@
 package com.jdc.learners.domain.service;
 
+import static com.jdc.learners.utils.SpecificationUtils.withFrom;
+import static com.jdc.learners.utils.SpecificationUtils.withTo;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +13,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import com.jdc.learners.domain.dto.form.PurchaseForm;
 import com.jdc.learners.domain.dto.page.PagerResult;
@@ -22,6 +24,7 @@ import com.jdc.learners.domain.repo.CourseRepo;
 import com.jdc.learners.domain.repo.PaymentTypeRepo;
 import com.jdc.learners.domain.repo.RegistrationRepo;
 import com.jdc.learners.domain.repo.StudentRepo;
+import com.jdc.learners.utils.SpecificationUtils;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -75,27 +78,7 @@ public class StudentService {
 	}
 	
 	private Specification<Student> withName(Optional<String> data) {
-		if(data.filter(StringUtils::hasLength).isPresent()) {
-			// TODO
-		}
-		
-		return Specification.where(null);		
+		return SpecificationUtils.withName(data);
 	}
 	
-	private Specification<Student> withFrom(Optional<LocalDate> data) {
-		if(data.isPresent()) {
-			// TODO
-		}
-		
-		return Specification.where(null);
-	}	
-
-	private Specification<Student> withTo(Optional<LocalDate> data) {
-		if(data.isPresent()) {
-			// TODO
-		}
-		
-		return Specification.where(null);
-	}		
-
 }

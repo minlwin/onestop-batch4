@@ -1,5 +1,8 @@
 package com.jdc.learners.domain.service;
 
+import static com.jdc.learners.utils.SpecificationUtils.withFrom;
+import static com.jdc.learners.utils.SpecificationUtils.withTo;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -112,7 +115,7 @@ public class CourseService {
 
 	private Specification<Course> withCategory(Optional<Integer> data) {
 		if(data.filter(a -> a > 0).isPresent()) {
-			// TODO
+			return (root, query, cb) -> cb.equal(root.get("category").get("id"), data.get());
 		}
 		
 		return Specification.where(null);
@@ -120,7 +123,9 @@ public class CourseService {
 	
 	private Specification<Course> withKeyword(Optional<String> data) {
 		if(data.filter(StringUtils::hasLength).isPresent()) {
-			// TODO
+			return (root, query, cb) -> cb.or(
+				cb.like(cb.lower(root.get("name")), data.get().toLowerCase().concat("%")),
+				cb.like(cb.lower(root.get("category").get("name")), data.get().toLowerCase().concat("%")));
 		}
 		
 		return Specification.where(null);
@@ -128,7 +133,7 @@ public class CourseService {
 	
 	private Specification<Course> withTeacher(Optional<String> data) {
 		if(data.filter(StringUtils::hasLength).isPresent()) {
-			// TODO
+			return (root, query, cb) -> cb.like(cb.lower(root.get("teacher").get("name")), data.get().toLowerCase().concat("%"));
 		}
 		
 		return Specification.where(null);
@@ -136,25 +141,10 @@ public class CourseService {
 	
 	private Specification<Course> withCourse(Optional<String> data) {
 		if(data.filter(StringUtils::hasLength).isPresent()) {
-			// TODO
+			return (root, query, cb) -> cb.like(cb.lower(root.get("name")), data.get().toLowerCase().concat("%"));
 		}
 		
 		return Specification.where(null);
 	}
 	
-	private Specification<Course> withFrom(Optional<LocalDate> data) {
-		if(data.isPresent()) {
-			// TODO
-		}
-		
-		return Specification.where(null);
-	}	
-
-	private Specification<Course> withTo(Optional<LocalDate> data) {
-		if(data.isPresent()) {
-			// TODO
-		}
-		
-		return Specification.where(null);
-	}	
 }

@@ -1,5 +1,8 @@
 package com.jdc.learners.domain.service;
 
+import static com.jdc.learners.utils.SpecificationUtils.withFrom;
+import static com.jdc.learners.utils.SpecificationUtils.withTo;
+
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -50,19 +53,4 @@ public class RegistrationService {
 		return Specification.where(null);		
 	}
 
-	private Specification<Registration> withFrom(Optional<LocalDate> data) {
-		if(data.isPresent()) {
-			// TODO
-		}
-		
-		return Specification.where(null);
-	}	
-
-	private Specification<Registration> withTo(Optional<LocalDate> data) {
-		if(data.isPresent()) {
-			// TODO
-		}
-		
-		return Specification.where(null);
-	}
 }
