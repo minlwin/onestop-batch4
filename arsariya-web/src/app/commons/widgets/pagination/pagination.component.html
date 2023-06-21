@@ -1,7 +1,7 @@
 <div class="d-flex" [class.justify-content-end]="alighment == 'end'" [class.justify-content-start]="alighment == 'start'"  >
   <div class="row">
     <div class="col-auto">
-      <select #sizeSelect (change)="changePageSize(sizeSelect.value)" class="form-select">
+      <select *ngIf="pages.length" #sizeSelect (change)="changePageSize(sizeSelect.value)" class="form-select">
         <option *ngFor="let item of sizes" [value]="item">{{item}}</option>
       </select>
     </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/apis/category.service';
 import { CourseService } from 'src/app/services/apis/course.service';
+import { Pager } from 'src/app/services/dto/api-result';
 import { SecurityService } from 'src/app/services/security/security.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class PublicHomeComponent implements OnInit {
 
   categories:any[] = []
   courseList:any[] = []
+
   searchForm:FormGroup
+  pager?:Pager
+  sizes:number[] = [10, 25, 50]
 
   constructor(
     builder:FormBuilder,
@@ -38,18 +42,33 @@ export class PublicHomeComponent implements OnInit {
   }
 
   search() {
-    this.courseService.search(this.searchForm.value).subscribe(result => {
-      this.courseList = result
-    })
+    this.internalSearch(this.searchForm.value)
   }
 
   searchByCategory(id:number) {
-    this.courseService.searchByCategory(id).subscribe(result => {
-      this.courseList = result
+    let form = this.searchForm.value
+    form.category = id
+    this.internalSearch(form)
+  }
+
+  private internalSearch(form:any) {
+    this.courseService.search(form).subscribe(result => {
+      this.courseList = result.list
+      this.pager = result.pager
     })
   }
 
   showDetails(id:number) {
     this.router.navigate([`/${this.security.role.toLocaleLowerCase()}`,'course-details'], {queryParams: {id: id}})
+  }
+
+  changePage(page:number) {
+    this.searchForm.patchValue({current: page})
+    this.search()
+  }
+
+  changePageSize(size:number) {
+    this.searchForm.patchValue({size: size, current: 1})
+    this.search()
   }
 }

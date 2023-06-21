@@ -30,9 +30,8 @@ export class ErrorDialogComponent {
   }
 
   closeAndLogout() {
-    this.security.signOut().subscribe(() => {
-      this.router.navigate(['/'])
-      this.dialog?.hide()
-    })
+    this.security.signOut()
+    this.router.navigate(['/'])
+    this.dialog?.hide()
   }
 }

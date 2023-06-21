@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { StudentService } from 'src/app/services/apis/student.service';
-import { PageResult, Pager } from 'src/app/services/dto/api-result';
+import { Pager } from 'src/app/services/dto/api-result';
 import { PagerListComponent } from '../pager-list.component';
 
 @Component({
@@ -30,9 +30,8 @@ export class StudentsComponent extends PagerListComponent{
 
   search() {
     this.service.searchForAdmin(this.form.value).subscribe(result => {
-      let listResult = result.result as PageResult
-      this.list = listResult.list
-      this.pager = listResult.pager
+      this.list = result.list
+      this.pager = result.pager
     })
   }
 

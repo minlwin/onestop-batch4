@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResult } from '../dto/api-result';
+import { PageResult } from '../dto/api-result';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,17 +17,13 @@ export class CourseService {
   constructor(private http:HttpClient) { }
 
   // Admin
-  searchForAdmin(form:any):Observable<ApiResult> {
-    return this.http.get<ApiResult>(ADMIN_DOMAIN, {params: form})
+  searchForAdmin(form:any):Observable<PageResult> {
+    return this.http.get<PageResult>(ADMIN_DOMAIN, {params: form})
   }
 
   // Public
-  searchByCategory(id: number):Observable<any[]> {
-    return this.search({category: id})
-  }
-
-  search(form: any):Observable<any[]> {
-    return this.http.get<any[]>(PUBLIC_DOMAIN, {params: form})
+  search(form: any):Observable<PageResult> {
+    return this.http.get<PageResult>(PUBLIC_DOMAIN, {params: form})
   }
 
   findObjectivesForCourse(courseId:number) {

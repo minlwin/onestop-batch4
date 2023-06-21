@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-import { ApiResult } from "../dto/api-result";
+import { Observable } from "rxjs";
+import { PageResult } from "../dto/api-result";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 
@@ -12,8 +12,8 @@ export class RegistrationService {
 
   constructor(private http:HttpClient) {}
 
-  searchForAdmin(form:any):Observable<ApiResult> {
-    return this.http.get<ApiResult>(ADMIN_DOMAIN, {params: form})
+  searchForAdmin(form:any):Observable<PageResult> {
+    return this.http.get<PageResult>(ADMIN_DOMAIN, {params: form})
   }
 
   purchaseCourse(form:any) {

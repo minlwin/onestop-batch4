@@ -44,6 +44,7 @@ export class PaymentMasterComponent {
   save() {
     if(this.form.valid) {
       this.service.save(this.form.value).subscribe(_ => {
+        this.dialog?.hide()
         this.search()
       })
     }

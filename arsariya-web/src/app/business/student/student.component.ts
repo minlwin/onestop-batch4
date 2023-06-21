@@ -10,9 +10,8 @@ export class StudentComponent {
   constructor(private security:SecurityService, private router:Router) {}
 
   signOut() {
-    this.security.signOut().subscribe(() => {
-      this.router.navigate(['/anonymous'])
-    })
+    this.security.signOut()
+    this.router.navigate(['/anonymous'])
   }
 
 }
