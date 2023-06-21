@@ -1,5 +1,8 @@
 package com.jdc.learners.domain.service;
 
+import static com.jdc.learners.utils.ExceptionUtils.idNotFound;
+import static com.jdc.learners.utils.ExceptionUtils.keyNotFound;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jdc.learners.domain.dto.TeacherPaymentDto;
+import com.jdc.learners.domain.dto.form.TeacherPaymentForm;
+import com.jdc.learners.domain.dto.vo.TeacherPaymentVO;
+import com.jdc.learners.domain.entity.PaymentType;
+import com.jdc.learners.domain.entity.Teacher;
 import com.jdc.learners.domain.repo.PaymentTypeRepo;
 import com.jdc.learners.domain.repo.TeacherPaymentRepo;
 import com.jdc.learners.domain.repo.TeacherRepo;
@@ -30,18 +36,20 @@ public class PaymentMethodService {
 	private TeacherRepo teacherRepo;
 
 	@Transactional(readOnly = true)
-	public Optional<List<TeacherPaymentDto>> getOwnPayments() {
+	public Optional<List<TeacherPaymentVO>> getOwnPayments() {
 		return teacherRepo.findOneByEmail(SecurityContextHolder.getContext().getAuthentication().getName())
-				.map(a -> a.getPayments().stream().map(TeacherPaymentDto::from).toList());
+				.map(a -> a.getPayments().stream().map(TeacherPaymentVO::from).toList());
 	}
 
 	@PreAuthorize("hasAuthority('Teacher')")
-	public TeacherPaymentDto create(TeacherPaymentDto form) {
+	public TeacherPaymentForm create(TeacherPaymentForm form) {
 		
-		var teacher = teacherRepo.findOneByEmail(SecurityContextHolder.getContext().getAuthentication().getName())
-				.orElseThrow(EntityNotFoundException::new);
-		var type = paymentTypeRepo.findById(form.getId())
-				.orElseThrow(EntityNotFoundException::new);
+		var loginId = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		var teacher = teacherRepo.findOneByEmail(loginId)
+				.orElseThrow(() -> keyNotFound(Teacher.class, "email", loginId));
+		var type = paymentTypeRepo.findById(form.getType())
+				.orElseThrow(() -> idNotFound(PaymentType.class, form.getType()));
 		
 		var entity = form.entity();
 		entity.setTeacher(teacher);
@@ -49,14 +57,14 @@ public class PaymentMethodService {
 		
 		entity = paymentRepo.save(entity);
 		
-		return TeacherPaymentDto.from(entity);
+		return TeacherPaymentForm.from(entity);
 	}
 
 	@PreAuthorize("hasAuthority('Teacher')")
-	public TeacherPaymentDto update(int id, TeacherPaymentDto form) {
+	public TeacherPaymentForm update(int id, TeacherPaymentForm form) {
 		
 		var type = paymentTypeRepo.findById(form.getId())
-				.orElseThrow(EntityNotFoundException::new);
+				.orElseThrow(() -> idNotFound(PaymentType.class, form.getType()));
 
 		var entity = paymentRepo.findById(id).orElseThrow(EntityNotFoundException::new);
 		
@@ -64,7 +72,7 @@ public class PaymentMethodService {
 		entity.setAccountName(form.getAccountName());
 		entity.setAccountNumber(form.getAccountNumber());
 		
-		return TeacherPaymentDto.from(entity);
+		return TeacherPaymentForm.from(entity);
 	}
 
 }

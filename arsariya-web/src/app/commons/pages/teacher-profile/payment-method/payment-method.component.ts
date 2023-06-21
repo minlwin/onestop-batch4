@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalDialogComponent } from 'src/app/commons/widgets/modal-dialog/modal-dialog.component';
 import { PaymentMethodService } from 'src/app/services/apis/payment.method.service';
@@ -10,7 +10,7 @@ import { PaymentTypeService } from 'src/app/services/apis/payment.type.service';
   styles: [
   ]
 })
-export class PaymentMethodComponent {
+export class PaymentMethodComponent implements OnInit{
 
   @Input()
   email?:string
@@ -30,7 +30,7 @@ export class PaymentMethodComponent {
     this.form = builder.group({
       id: 0,
       email: ['', Validators.required],
-      type: [0, Validators.required],
+      type: ['', Validators.required],
       accountName: ['', Validators.required],
       accountNumber: ['', Validators.required]
     })
@@ -38,6 +38,9 @@ export class PaymentMethodComponent {
     paymentTypeService.getAllPayments().subscribe(result => {
       this.payments = result
     })
+  }
+
+  ngOnInit(): void {
     this.search()
   }
 

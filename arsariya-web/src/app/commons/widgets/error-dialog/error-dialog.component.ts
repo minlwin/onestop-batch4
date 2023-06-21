@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ErrorDialogComponent {
 
-  message?:string
+  message?:string | string []
   logout?:boolean
 
   constructor(private security:SecurityService, private router:Router) {}
@@ -19,7 +19,11 @@ export class ErrorDialogComponent {
   @ViewChild(ModalDialogComponent)
   dialog?:ModalDialogComponent
 
-  show(message?:string, type?:string) {
+  get messages():string[] {
+    return this.message as string[] ?? []
+  }
+
+  show(message:string | string [], type?:string) {
     this.message = message
     this.logout = type == 'Auth'
     this.dialog?.show()

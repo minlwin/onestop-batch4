@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ import com.jdc.learners.utils.SpecificationUtils;
 @Transactional(readOnly = true)
 public class TeacherService {
 
+	@Autowired
 	private TeacherRepo teacherRepo;
 
 	public Optional<List<CourseListVO>> findCoursesForTeacher(String email) {

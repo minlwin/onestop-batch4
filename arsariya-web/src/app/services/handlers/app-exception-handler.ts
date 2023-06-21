@@ -10,6 +10,8 @@ export class AppExceptionHandler implements ErrorHandler{
 
   handleError(error: any): void {
 
+    console.log(error)
+
     if(error?.message) {
       if(this.errorDialog) {
         this.zone.run(() => this.errorDialog?.show(error?.message, error?.type))

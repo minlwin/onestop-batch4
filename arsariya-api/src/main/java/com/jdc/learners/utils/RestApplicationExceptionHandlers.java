@@ -1,5 +1,7 @@
 package com.jdc.learners.utils;
 
+import static com.jdc.learners.domain.dto.ApiResult.authError;
+import static com.jdc.learners.domain.dto.ApiResult.businessError;
 import static com.jdc.learners.utils.AuthenticationExceptionUtils.resolveMessage;
 
 import java.util.List;
@@ -25,25 +27,25 @@ public class RestApplicationExceptionHandlers {
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ApiResult<List<String>> handle(ValidationResultException e) {
-		return ApiResult.businessError(e.getMessages());
+		return businessError(e.getMessages());
 	}
 	
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ApiResult<List<String>> handle(EntityNotFoundException e) {
-		return ApiResult.businessError(List.of(e.getMessage()));
+		return businessError(List.of(e.getMessage()));
 	}
 	
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ApiResult<List<String>> handle(AccessDeniedException e) {
-		return ApiResult.businessError(List.of(accessDeinedError));
+		return businessError(List.of(accessDeinedError));
 	}
 	
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ApiResult<List<String>> handle(AuthenticationException e) {
-		return ApiResult.authError(List.of(resolveMessage(e)));
+		return authError(List.of(resolveMessage(e)));
 	}
 	
 	

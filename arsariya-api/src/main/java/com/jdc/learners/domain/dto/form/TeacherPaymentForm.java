@@ -1,4 +1,4 @@
-package com.jdc.learners.domain.dto;
+package com.jdc.learners.domain.dto.form;
 
 import com.jdc.learners.domain.entity.TeacherPayment;
 
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class TeacherPaymentDto {
+public class TeacherPaymentForm {
 
 	@NonNull
 	private Integer id;
@@ -32,11 +32,11 @@ public class TeacherPaymentDto {
 	private String accountNumber;
 	
 	public TeacherPayment entity() {
-		return new TeacherPayment(id, accountName, accountNumber);
+		return new TeacherPayment(accountName, accountNumber);
 	}
 	
-	public static TeacherPaymentDto from(TeacherPayment entity) {
-		var vo = new TeacherPaymentDto(entity.getId(), entity.getAccountName(), entity.getAccountNumber());
+	public static TeacherPaymentForm from(TeacherPayment entity) {
+		var vo = new TeacherPaymentForm(entity.getId(), entity.getAccountName(), entity.getAccountNumber());
 		vo.setEmail(entity.getTeacher().getEmail());
 		vo.setType(entity.getType().getId());
 		return vo;

@@ -1,5 +1,5 @@
 <app-main-page icon="bi-book" title="Course Details">
-  <div class="row">
+  <div *ngIf="courseDto" class="row">
     <div class="col">
       <!-- Course Information -->
       <app-course-cover [dto]="courseDto"></app-course-cover>
@@ -18,6 +18,6 @@
       <button (click)="showCoursesForTeacher()" class="btn btn-outline-primary w-100 mt-3">
         <i class="bi bi-send"></i> Show Courses for Teacher
       </button>
-  </div>
+    </div>
   </div>
 </app-main-page>

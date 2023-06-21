@@ -2,9 +2,15 @@
 
   <h5 header><i class="bi bi-info-circle"></i> Message</h5>
 
-  <p body>
-    {{message || 'Application Error.'}}
-  </p>
+  <div body>
+    <p *ngIf="!message?.length">
+      {{message || 'Application Error.'}}
+    </p>
+
+    <ul *ngIf="message?.length">
+      <li *ngFor="let item of messages">{{item}}</li>
+    </ul>
+  </div>
 
   <div footer>
     <button (click)="close()" *ngIf="!logout" class="btn btn-outline-primary">

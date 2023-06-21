@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,12 +36,12 @@ public class PublicCourseApi {
 	}
 
 	@GetMapping("{id}/objectives")
-	public ApiResult<List<String>> findObjective(int id) {
+	public ApiResult<List<String>> findObjective(@PathVariable int id) {
 		return service.findObjective(id).map(ApiResult::success).orElseThrow(() -> idNotFound(Course.class, id));
 	}
 
 	@GetMapping("{id}")
-	public ApiResult<CourseDetailsVO> findDetails(int id) {
+	public ApiResult<CourseDetailsVO> findDetails(@PathVariable int id) {
 		return service.findDetails(id).map(ApiResult::success).orElseThrow(() -> idNotFound(Course.class, id));
 	}
 

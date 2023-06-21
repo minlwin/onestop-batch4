@@ -4,6 +4,7 @@ import static com.jdc.learners.utils.ExceptionUtils.keyNotFound;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jdc.learners.domain.dto.ApiResult;
-import com.jdc.learners.domain.dto.TeacherPaymentDto;
+import com.jdc.learners.domain.dto.form.TeacherPaymentForm;
+import com.jdc.learners.domain.dto.vo.TeacherPaymentVO;
 import com.jdc.learners.domain.entity.Teacher;
 import com.jdc.learners.domain.service.PaymentMethodService;
 
@@ -24,24 +26,25 @@ import com.jdc.learners.domain.service.PaymentMethodService;
 @RequestMapping("teacher/payment")
 public class TeacherPaymentMethodApi {
 
+	@Autowired
 	private PaymentMethodService service;
 
 	@GetMapping
-	public ApiResult<List<TeacherPaymentDto>> getOwnPayments() {
+	public ApiResult<List<TeacherPaymentVO>> getOwnPayments() {
 		return service.getOwnPayments().map(ApiResult::success)
 				.orElseThrow(() -> keyNotFound(Teacher.class, "email", 
 						SecurityContextHolder.getContext().getAuthentication().getName()));
 	}
 
 	@PostMapping
-	public ApiResult<TeacherPaymentDto> create(
-			@Validated @RequestBody TeacherPaymentDto form, BindingResult result) {
+	public ApiResult<TeacherPaymentForm> create(
+			@Validated @RequestBody TeacherPaymentForm form, BindingResult result) {
 		return ApiResult.success(service.create(form));
 	}
 
 	@PutMapping("{id}")
-	public ApiResult<TeacherPaymentDto> update(@PathVariable int id, 
-			@Validated @RequestBody TeacherPaymentDto form, BindingResult result) {
+	public ApiResult<TeacherPaymentForm> update(@PathVariable int id, 
+			@Validated @RequestBody TeacherPaymentForm form, BindingResult result) {
 		return ApiResult.success(service.update(id, form));
 	}
 

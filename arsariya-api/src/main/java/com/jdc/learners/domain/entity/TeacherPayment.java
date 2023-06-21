@@ -26,7 +26,6 @@ public class TeacherPayment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull
 	private Integer id;
 
 	@ManyToOne(optional = false)

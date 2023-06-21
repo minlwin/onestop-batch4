@@ -11,12 +11,11 @@ export class ApiResultTranslateInterceptor implements HttpInterceptor {
           if(event.body.status == 'Success') {
             return event.clone({body: event.body.result})
           } else {
-            throw event.body.result
+            throw event.body
           }
         }
       }
       return event
     }))
   }
-
 }
