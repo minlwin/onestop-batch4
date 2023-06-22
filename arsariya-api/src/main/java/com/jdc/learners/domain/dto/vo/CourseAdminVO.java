@@ -2,6 +2,8 @@ package com.jdc.learners.domain.dto.vo;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.jdc.learners.domain.dto.MemberProfileDto;
 import com.jdc.learners.domain.entity.Course;
 
@@ -25,6 +27,7 @@ public class CourseAdminVO {
 	private Integer fees;
 
 	@NonNull
+	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime createAt;
 
 	private MemberProfileDto teacher;

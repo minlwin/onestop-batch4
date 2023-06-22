@@ -2,6 +2,8 @@ package com.jdc.learners.domain.dto.vo;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.jdc.learners.domain.dto.PaymentTypeDto;
 import com.jdc.learners.domain.entity.Registration;
 
@@ -31,6 +33,7 @@ public class RegistrationVO {
 	private Integer agentFees;
 
 	@NonNull
+	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate registAt;
 
 	private CourseListVO course;

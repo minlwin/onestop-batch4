@@ -2,6 +2,8 @@ package com.jdc.learners.domain.dto.vo;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.jdc.learners.domain.entity.Student;
 
 import lombok.Data;
@@ -27,6 +29,7 @@ public class StudentAdminVO {
 	private String phone;
 
 	@NonNull
+	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate registAt;
 
 	private int courseCount;
