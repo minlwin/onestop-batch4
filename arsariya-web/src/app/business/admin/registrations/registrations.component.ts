@@ -22,7 +22,7 @@ export class RegistrationsComponent extends PagerListComponent{
       course: '',
       from: '',
       to: '',
-      current: 1,
+      current: 0,
       size: this.sizes[0]
     })
   }

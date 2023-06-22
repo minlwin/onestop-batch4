@@ -39,7 +39,7 @@ export class PaginationComponent {
 
     if(pager && pager.totalPage > 1) {
 
-      this.lastPage = pager.totalPage
+      this.lastPage = pager.totalPage - 1
       this.current = pager.current
 
       this.pages.push(pager.current)

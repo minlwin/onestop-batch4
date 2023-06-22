@@ -27,8 +27,10 @@ export class PublicHomeComponent implements OnInit {
     private categoryService:CategoryService,
     private courseService:CourseService) {
 
-      this.searchForm = builder.group({
-      keyword: ''
+    this.searchForm = builder.group({
+      keyword: '',
+      current: 0,
+      size: this.sizes[0]
     })
 
   }

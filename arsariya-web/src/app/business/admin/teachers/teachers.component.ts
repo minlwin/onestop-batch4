@@ -21,7 +21,7 @@ export class TeachersComponent extends PagerListComponent{
       teacher: '',
       email: '',
       phone: '',
-      current: 1,
+      current: 0,
       size: this.sizes[0]
     })
   }
