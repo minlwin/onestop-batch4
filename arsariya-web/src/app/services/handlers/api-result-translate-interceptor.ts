@@ -5,6 +5,8 @@ export class ApiResultTranslateInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(map(event => {
+
+      // Normal Response
       if(event instanceof HttpResponse) {
 
         if(event.body.status) {
@@ -15,6 +17,7 @@ export class ApiResultTranslateInterceptor implements HttpInterceptor {
           }
         }
       }
+
       return event
     }))
   }

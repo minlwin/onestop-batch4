@@ -10,15 +10,26 @@ export class AppExceptionHandler implements ErrorHandler{
 
   handleError(error: any): void {
 
-    console.log(error)
+    let message:any
+    let type:any
 
-    if(error?.message) {
-      if(this.errorDialog) {
-        this.zone.run(() => this.errorDialog?.show(error?.message, error?.type))
-      }
+    if(error.error) {
+      message = error.error.result
+      type = error.error.status
+    } else if(error?.message && error?.status) {
+      message = error.message
+      type = error.type
     } else {
-      console.log(error)
+      message = error.message || "Angular Platform Error"
+      type= "Angular"
     }
+
+    if(this.errorDialog && message && type) {
+      this.zone.run(() => {
+        this.errorDialog?.show(message, type)
+      })
+    }
+
   }
 
 }

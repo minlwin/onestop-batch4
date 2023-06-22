@@ -35,7 +35,7 @@ export class ErrorDialogComponent {
 
   closeAndLogout() {
     this.security.signOut()
-    this.router.navigate(['/'])
+    this.router.navigate(['/anonymous', 'signin'])
     this.dialog?.hide()
   }
 }

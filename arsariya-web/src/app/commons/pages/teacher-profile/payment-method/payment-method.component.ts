@@ -74,6 +74,7 @@ export class PaymentMethodComponent implements OnInit{
     if(this.form.valid) {
       this.service.savePaymentMethod(this.form.value).subscribe(_ => {
         this.search()
+        this.modalDialog?.hide()
       })
     }
   }
