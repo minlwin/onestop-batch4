@@ -34,6 +34,10 @@ export class CourseService {
     return this.http.get<any>(`${PUBLIC_DOMAIN}/${id}`)
   }
 
+  findCourseForTeacher(loginId:string) {
+    return this.http.get<any[]>(`${PUBLIC_DOMAIN}/teacher`, {params: {loginId: loginId}})
+  }
+
   // Teacher
   save(value: any) {
     const {id, ... form} = value
@@ -46,10 +50,6 @@ export class CourseService {
 
   private update(id:number, form:any) {
     return this.http.put<any>(`${TEACHER_DOMAIN}/${id}`, form)
-  }
-
-  findCourseForTeacher(loginId:string) {
-    return this.http.get<any[]>(TEACHER_DOMAIN, {params: {loginId: loginId}})
   }
 
   // Student

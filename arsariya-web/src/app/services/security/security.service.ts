@@ -52,7 +52,7 @@ export class SecurityService {
       return this.loginUser.email
     }
 
-    throw({message: 'You have to login again.', type: 'Auth'})
+    return ""
   }
 
   get role():string {

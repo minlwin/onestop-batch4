@@ -41,6 +41,12 @@ public class CourseDetailsVO {
 	private MemberProfileDto teacher;
 
 	private int students;
+	
+	private Type type;
+	
+	public enum Type {
+		PROMOTE, OWN_COURSE, ATTEND_COURSE, NONE
+	}
 
 	
 	public static CourseDetailsVO from(Course entity) {

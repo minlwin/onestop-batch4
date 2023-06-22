@@ -26,11 +26,6 @@ export class CourseDetailsComponent {
       if(this.id) {
         // Load Course Information
         courseService.findCourseDetails(this.id)
-          // Delete after using api
-          .pipe(tap(data => {
-            data.type = security.role == 'Student' ? 'PROMOTE' : (security.role == 'Teacher' ? 'OWN_COURSE' : (security.role == 'Anonymous' ? 'PROMOTE' : 'NONE') )
-          }))
-          // Delete until here
           .subscribe(result => {
           this.courseDto = result
         })
@@ -39,10 +34,16 @@ export class CourseDetailsComponent {
   }
 
   showCoursesForTeacher() {
-    this.router.navigate([this.rootSegment, 'teacher-profile'], {queryParams: {teacher: 'teacher@gmail.com'}})
+    if(this.courseDto) {
+      this.router.navigate([this.rootSegment, 'teacher-profile'], {queryParams: {teacher: this.courseDto.teacher.email}})
+    }
   }
 
   get rootSegment() {
     return `/${this.security.role.toLocaleLowerCase()}`
+  }
+
+  get loginId() {
+    return this.security.loginId
   }
 }

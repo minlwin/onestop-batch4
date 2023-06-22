@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +21,15 @@ import com.jdc.learners.domain.dto.form.CourseForm;
 import com.jdc.learners.domain.dto.page.PagerResult;
 import com.jdc.learners.domain.dto.vo.CourseAdminVO;
 import com.jdc.learners.domain.dto.vo.CourseDetailsVO;
+import com.jdc.learners.domain.dto.vo.CourseDetailsVO.Type;
 import com.jdc.learners.domain.dto.vo.CourseListVO;
+import com.jdc.learners.domain.entity.Account.Role;
 import com.jdc.learners.domain.entity.Category;
 import com.jdc.learners.domain.entity.Course;
+import com.jdc.learners.domain.entity.Registration;
 import com.jdc.learners.domain.repo.CategoryRepo;
 import com.jdc.learners.domain.repo.CourseRepo;
+import com.jdc.learners.domain.repo.StudentRepo;
 import com.jdc.learners.domain.repo.TeacherRepo;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -41,6 +46,9 @@ public class CourseService {
 	
 	@Autowired
 	private TeacherRepo teacherRepo;
+	
+	@Autowired
+	private StudentRepo studentRepo;
 
 	@Transactional
 	@PreAuthorize("hasAuthority('Teacher')")
@@ -85,7 +93,9 @@ public class CourseService {
 	}
 
 	public Optional<CourseDetailsVO> findDetails(int id) {
-		return courseRepo.findById(id).map(CourseDetailsVO::from);
+		return courseRepo.findById(id)
+				.map(CourseDetailsVO::from)
+				.map(this::setType);
 	}
 
 	public PagerResult<CourseListVO> search(Optional<Integer> category, Optional<String> keyword, int current, int size) {
@@ -147,4 +157,35 @@ public class CourseService {
 		return Specification.where(null);
 	}
 	
+	private CourseDetailsVO setType(CourseDetailsVO vo) {
+		var authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		var authorities = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
+		
+		if(authorities.contains(Role.Admin.name())) {
+			vo.setType(Type.NONE);
+		} else if(authorities.contains(Role.Teacher.name())){
+			
+			teacherRepo.findOneByEmail(authentication.getName()).ifPresent(teacher -> {
+				if(teacher.getCourses().stream().map(Course::getId).toList().contains(vo.getId())) {
+					vo.setType(Type.OWN_COURSE);
+				} else {
+					vo.setType(Type.NONE);
+				}
+			});
+			
+		} else if(authorities.contains(Role.Student.name())){
+			
+			studentRepo.findOneByEmail(authentication.getName()).ifPresent(student -> {
+				if(student.getRegistrations().stream().map(Registration::getCourse).map(Course::getId).toList().contains(vo.getId())) {
+					vo.setType(Type.ATTEND_COURSE);
+				} else {
+					vo.setType(Type.PROMOTE);
+				}
+			});	
+		} else {
+			vo.setType(Type.PROMOTE);
+		}
+		return vo;
+	}
 }

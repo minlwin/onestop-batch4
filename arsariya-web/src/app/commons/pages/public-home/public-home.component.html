@@ -4,9 +4,16 @@
     <div *ngIf="categories.length" class="col-3">
       <!-- Category Links -->
       <div class="list-group">
-        <span (click)="searchByCategory(item.id)" class="list-group-item" *ngFor="let item of categories">
+        <a hoverable="bg-success-subtle"
+          [class.bg-success]="!searchForm.get('category')?.value" [class.text-white]="!searchForm.get('category')?.value"
+          (click)="searchAllCategory()" class="list-group-item">All Category</a>
+
+        <a (click)="searchByCategory(item.id)" hoverable="bg-success-subtle"
+          [class.bg-success]="searchForm.get('category')?.value == item.id"
+          [class.text-white]="searchForm.get('category')?.value == item.id"
+          class="list-group-item" *ngFor="let item of categories">
           {{item.name}}
-        </span>
+        </a>
       </div>
 
     </div>
@@ -21,7 +28,7 @@
               <input formControlName="keyword" type="text" placeholder="Search Keyword" class="form-control">
             </div>
             <div class="col">
-              <button (click)="search()" class="btn btn-outline-primary">
+              <button (click)="search()" class="btn btn-success">
                 <i class="bi bi-search"></i> Search
               </button>
             </div>

@@ -1,19 +1,25 @@
-<div class="card">
-  <div class="card-body">
+<div class="card" focusable>
+
+  <div class="card-body bg-success-subtle">
     <h5>{{course.name}}</h5>
+    <div class="d-flex justify-content-between">
+      <span class="me-2 text-truncate">
+        <i class="bi bi-tag"></i> {{course.category.name}}
+      </span>
+      <span>
+        <i class="bi bi-clock"></i> {{course.hours}} Hours
+      </span>
+    </div>
   </div>
 
   <img class="img-fluid w-100 card-img-top" [src]="course.image || '/assets/images/course-cover.jpg'" alt="">
 
-  <div class="card-body">
-    <div class="d-flex justify-content-between">
-      <span>
-        <i class="bi bi-people"></i> 350
-      </span>
-      <a (click)="showDetails()">
-        <i class="bi bi-send"></i> Show Details
-      </a>
-    </div>
-  </div>
-  <!-- Cover Image -->
+  <div class="card-body d-flex justify-content-between">
+    <span class="text-secondary">
+      <i class="bi bi-cart"></i> {{course.fees | number}} MMK
+    </span>
+    <a class="btn btn-sm btn-outline-success" (click)="showDetails()">
+      <i class="bi bi-send"></i>
+    </a>
+</div>
 </div>

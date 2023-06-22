@@ -15,7 +15,7 @@
       <!-- Profile of Teacher -->
       <app-member-profile profileType="Teacher" [email]="courseDto.teacher.email"></app-member-profile>
 
-      <button (click)="showCoursesForTeacher()" class="btn btn-outline-primary w-100 mt-3">
+      <button *ngIf="courseDto?.teacher?.email != loginId"  (click)="showCoursesForTeacher()" class="btn btn-outline-success w-100 mt-3">
         <i class="bi bi-send"></i> Show Courses for Teacher
       </button>
     </div>

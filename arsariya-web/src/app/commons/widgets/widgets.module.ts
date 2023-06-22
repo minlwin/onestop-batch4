@@ -10,6 +10,8 @@ import { MemberProfileComponent } from './member-profile/member-profile.componen
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HoverableDirective } from './hoverable.directive';
+import { FocusableDirective } from './focusable.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     PaginationComponent,
     MemberProfileComponent,
     ModalDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    HoverableDirective,
+    FocusableDirective,
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     PaginationComponent,
     MemberProfileComponent,
     ModalDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    HoverableDirective,
+    FocusableDirective,
   ]
 })
 export class WidgetsModule { }

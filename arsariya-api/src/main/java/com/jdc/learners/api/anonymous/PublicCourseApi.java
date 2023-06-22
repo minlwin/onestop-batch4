@@ -1,6 +1,7 @@
 package com.jdc.learners.api.anonymous;
 
 import static com.jdc.learners.utils.ExceptionUtils.idNotFound;
+import static com.jdc.learners.utils.ExceptionUtils.keyNotFound;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import com.jdc.learners.domain.dto.page.PagerResult;
 import com.jdc.learners.domain.dto.vo.CourseDetailsVO;
 import com.jdc.learners.domain.dto.vo.CourseListVO;
 import com.jdc.learners.domain.service.CourseService;
+import com.jdc.learners.domain.service.TeacherService;
 
 @RestController
 @RequestMapping("public/course")
@@ -24,6 +26,10 @@ public class PublicCourseApi {
 
 	@Autowired
 	private CourseService service;
+	
+	@Autowired
+	private TeacherService teacherService;
+	
 
 	@GetMapping
 	public ApiResult<PagerResult<CourseListVO>> search(
@@ -42,6 +48,12 @@ public class PublicCourseApi {
 	@GetMapping("{id}")
 	public ApiResult<CourseDetailsVO> findDetails(@PathVariable int id) {
 		return service.findDetails(id).map(ApiResult::success).orElseThrow(() -> idNotFound("Course", id));
+	}
+	
+	@GetMapping("teacher")
+	public ApiResult<List<CourseListVO>> findCoursesForTeacher(@RequestParam String loginId) {
+		return teacherService.findCoursesForTeacher(loginId).map(ApiResult::success)
+				.orElseThrow(() -> keyNotFound("Teacher", "email", loginId));
 	}
 
 }

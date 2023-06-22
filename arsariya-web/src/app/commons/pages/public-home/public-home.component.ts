@@ -16,6 +16,8 @@ export class PublicHomeComponent implements OnInit {
   categories:any[] = []
   courseList:any[] = []
 
+  mouseOn = false
+
   searchForm:FormGroup
   pager?:Pager
   sizes:number[] = [10, 25, 50]
@@ -28,6 +30,7 @@ export class PublicHomeComponent implements OnInit {
     private courseService:CourseService) {
 
     this.searchForm = builder.group({
+      category: 0,
       keyword: '',
       current: 0,
       size: this.sizes[0]
@@ -44,20 +47,20 @@ export class PublicHomeComponent implements OnInit {
   }
 
   search() {
-    this.internalSearch(this.searchForm.value)
-  }
-
-  searchByCategory(id:number) {
-    let form = this.searchForm.value
-    form.category = id
-    this.internalSearch(form)
-  }
-
-  private internalSearch(form:any) {
-    this.courseService.search(form).subscribe(result => {
+    this.courseService.search(this.searchForm.value).subscribe(result => {
       this.courseList = result.list
       this.pager = result.pager
     })
+  }
+
+  searchAllCategory() {
+    this.searchForm.patchValue({category: 0})
+    this.search()
+  }
+
+  searchByCategory(id:number) {
+    this.searchForm.patchValue({category: id})
+    this.search()
   }
 
   showDetails(id:number) {
