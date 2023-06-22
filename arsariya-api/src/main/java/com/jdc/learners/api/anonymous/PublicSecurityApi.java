@@ -17,7 +17,6 @@ import com.jdc.learners.domain.dto.form.SignInForm;
 import com.jdc.learners.domain.dto.form.StudentSignUpForm;
 import com.jdc.learners.domain.dto.form.TeacherSignUpForm;
 import com.jdc.learners.domain.dto.vo.LoginUserVO;
-import com.jdc.learners.domain.entity.Account;
 import com.jdc.learners.domain.service.SecurityService;
 
 @RestController
@@ -65,7 +64,7 @@ public class PublicSecurityApi {
 		
 		// Find Login User
 		return service.findLoginUser(form.getEmail()).map(ApiResult::success)
-				.orElseThrow(() -> keyNotFound(Account.class, "email", form.getEmail()));
+				.orElseThrow(() -> keyNotFound("Account", "email", form.getEmail()));
 	}
 
 }

@@ -14,13 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jdc.learners.domain.dto.form.TeacherPaymentForm;
 import com.jdc.learners.domain.dto.vo.TeacherPaymentVO;
-import com.jdc.learners.domain.entity.PaymentType;
-import com.jdc.learners.domain.entity.Teacher;
 import com.jdc.learners.domain.repo.PaymentTypeRepo;
 import com.jdc.learners.domain.repo.TeacherPaymentRepo;
 import com.jdc.learners.domain.repo.TeacherRepo;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 @Transactional
@@ -47,9 +43,9 @@ public class PaymentMethodService {
 		var loginId = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		var teacher = teacherRepo.findOneByEmail(loginId)
-				.orElseThrow(() -> keyNotFound(Teacher.class, "email", loginId));
+				.orElseThrow(() -> keyNotFound("Teacher", "email", loginId));
 		var type = paymentTypeRepo.findById(form.getType())
-				.orElseThrow(() -> idNotFound(PaymentType.class, form.getType()));
+				.orElseThrow(() -> idNotFound("Payment Type", form.getType()));
 		
 		var entity = form.entity();
 		entity.setTeacher(teacher);
@@ -64,9 +60,9 @@ public class PaymentMethodService {
 	public TeacherPaymentForm update(int id, TeacherPaymentForm form) {
 		
 		var type = paymentTypeRepo.findById(form.getId())
-				.orElseThrow(() -> idNotFound(PaymentType.class, form.getType()));
+				.orElseThrow(() -> idNotFound("Payment Type", form.getType()));
 
-		var entity = paymentRepo.findById(id).orElseThrow(EntityNotFoundException::new);
+		var entity = paymentRepo.findById(id).orElseThrow(() -> idNotFound("Teacher Payment", id));
 		
 		entity.setType(type);
 		entity.setAccountName(form.getAccountName());

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.form.TeacherPaymentForm;
 import com.jdc.learners.domain.dto.vo.TeacherPaymentVO;
-import com.jdc.learners.domain.entity.Teacher;
 import com.jdc.learners.domain.service.PaymentMethodService;
 
 @RestController
@@ -32,7 +31,7 @@ public class TeacherPaymentMethodApi {
 	@GetMapping
 	public ApiResult<List<TeacherPaymentVO>> getOwnPayments() {
 		return service.getOwnPayments().map(ApiResult::success)
-				.orElseThrow(() -> keyNotFound(Teacher.class, "email", 
+				.orElseThrow(() -> keyNotFound("Teacher", "email", 
 						SecurityContextHolder.getContext().getAuthentication().getName()));
 	}
 

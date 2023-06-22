@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.vo.CourseListVO;
-import com.jdc.learners.domain.entity.Student;
 import com.jdc.learners.domain.service.StudentService;
 
 @RestController
@@ -24,7 +23,7 @@ public class StudentCourseApi {
 
 	@GetMapping
 	public ApiResult<List<CourseListVO>> search(@RequestParam String loginId) {
-		return service.findCourseForStudent(loginId).map(ApiResult::success).orElseThrow(() -> keyNotFound(Student.class, "email", loginId));
+		return service.findCourseForStudent(loginId).map(ApiResult::success).orElseThrow(() -> keyNotFound("Student", "email", loginId));
 	}
 
 }

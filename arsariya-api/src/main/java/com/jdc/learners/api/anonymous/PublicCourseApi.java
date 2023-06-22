@@ -16,7 +16,6 @@ import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.page.PagerResult;
 import com.jdc.learners.domain.dto.vo.CourseDetailsVO;
 import com.jdc.learners.domain.dto.vo.CourseListVO;
-import com.jdc.learners.domain.entity.Course;
 import com.jdc.learners.domain.service.CourseService;
 
 @RestController
@@ -37,12 +36,12 @@ public class PublicCourseApi {
 
 	@GetMapping("{id}/objectives")
 	public ApiResult<List<String>> findObjective(@PathVariable int id) {
-		return service.findObjective(id).map(ApiResult::success).orElseThrow(() -> idNotFound(Course.class, id));
+		return service.findObjective(id).map(ApiResult::success).orElseThrow(() -> idNotFound("Course", id));
 	}
 
 	@GetMapping("{id}")
 	public ApiResult<CourseDetailsVO> findDetails(@PathVariable int id) {
-		return service.findDetails(id).map(ApiResult::success).orElseThrow(() -> idNotFound(Course.class, id));
+		return service.findDetails(id).map(ApiResult::success).orElseThrow(() -> idNotFound("Course", id));
 	}
 
 }

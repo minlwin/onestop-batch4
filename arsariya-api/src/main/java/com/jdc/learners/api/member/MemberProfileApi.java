@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jdc.learners.domain.dto.ApiResult;
 import com.jdc.learners.domain.dto.MemberProfileDto;
-import com.jdc.learners.domain.entity.Member;
 import com.jdc.learners.domain.service.MemberProfileService;
 
 @RestController
@@ -29,14 +28,14 @@ public class MemberProfileApi {
 	@PostMapping("image")
 	public ApiResult<MemberProfileDto> uploadProfileImage(@RequestParam MultipartFile file) {
 		return service.uploadProfileImage(file).map(ApiResult::success)
-				.orElseThrow(() -> keyNotFound(Member.class, "email", 
+				.orElseThrow(() -> keyNotFound("Member", "email", 
 						SecurityContextHolder.getContext().getAuthentication().getName()));
 	}
 
 	@PutMapping
 	public ApiResult<MemberProfileDto> saveProfile(@RequestBody @Validated MemberProfileDto form, BindingResult result) {
 		return service.saveProfile(form).map(ApiResult::success)
-				.orElseThrow(() -> keyNotFound(Member.class, "email", 
+				.orElseThrow(() -> keyNotFound("Member", "email", 
 						SecurityContextHolder.getContext().getAuthentication().getName()));
 	}
 
