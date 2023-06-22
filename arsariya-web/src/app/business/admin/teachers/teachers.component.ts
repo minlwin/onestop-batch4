@@ -24,6 +24,8 @@ export class TeachersComponent extends PagerListComponent{
       current: 0,
       size: this.sizes[0]
     })
+
+    this.search()
   }
 
   search() {

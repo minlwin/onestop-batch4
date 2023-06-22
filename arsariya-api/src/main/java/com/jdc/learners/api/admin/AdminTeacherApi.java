@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class AdminTeacherApi {
 	@Autowired
 	private TeacherService service;
 
+	@GetMapping
 	public ApiResult<PagerResult<TeacherAdminVO>> search(
 			@RequestParam Optional<String> teacher, 
 			@RequestParam Optional<String> email, 

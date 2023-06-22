@@ -24,6 +24,8 @@ export class AppExceptionHandler implements ErrorHandler{
       type= "Angular"
     }
 
+    console.log(`Type : ${type}, Message : ${message}`)
+
     if(this.errorDialog && message && type) {
       this.zone.run(() => {
         this.errorDialog?.show(message, type)

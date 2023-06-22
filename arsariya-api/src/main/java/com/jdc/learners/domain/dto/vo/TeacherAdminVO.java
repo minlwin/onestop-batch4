@@ -25,7 +25,6 @@ public class TeacherAdminVO {
 	@NonNull
 	private String email;
 
-	@NonNull
 	private String phone;
 
 	@NonNull
@@ -41,7 +40,8 @@ public class TeacherAdminVO {
 	private long netAward;
 	
 	public static TeacherAdminVO from(Teacher entity) {
-		var vo = new TeacherAdminVO(entity.getId(), entity.getName(), entity.getEmail(), entity.getPhone(), entity.getRegistAt());
+		var vo = new TeacherAdminVO(entity.getId(), entity.getName(), entity.getEmail(), entity.getRegistAt());
+		vo.setPhone(entity.getPhone());
 		vo.setCourseCount(entity.getCourses().size());
 		entity.getCourses().stream().forEach(course -> {
 			vo.setTotalFees(course.getRegistrations().stream().mapToInt(a -> a.getFees()).sum());
