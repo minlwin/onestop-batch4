@@ -23,7 +23,7 @@ import com.jdc.learners.security.JwtTokenSecurityFilter;
 import com.jdc.learners.utils.RestSecurityExceptionHandler;
 
 @Configuration
-@EnableJpaAuditing
+@EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 	
