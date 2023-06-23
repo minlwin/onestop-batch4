@@ -35,6 +35,8 @@ public class CourseDetailsVO {
 	@NonNull
 	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime updateAt;
+	
+	private String image;
 
 	private CategoryVO category;
 
@@ -54,6 +56,7 @@ public class CourseDetailsVO {
 		vo.setCategory(CategoryVO.from(entity.getCategory()));
 		vo.setTeacher(MemberProfileDto.from(entity.getTeacher()));
 		vo.setStudents(entity.getRegistrations().size());
+		vo.setImage(entity.getImage());
 		return vo;
 	}
 }

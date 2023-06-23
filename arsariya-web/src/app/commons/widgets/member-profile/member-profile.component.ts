@@ -69,6 +69,7 @@ export class MemberProfileComponent implements OnChanges{
     if(files && files.length > 0) {
       this.service.uploadProfileImage(files[0]).subscribe(result => {
         this.profile = result
+        this.form.patchValue(result)
       })
     }
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PageResult } from '../dto/api-result';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 
 const ADMIN_DOMAIN = `${environment.baseUrl}/admin/course`
 const PUBLIC_DOMAIN = `${environment.baseUrl}/public/course`
@@ -51,6 +51,13 @@ export class CourseService {
   private update(id:number, form:any) {
     return this.http.put<any>(`${TEACHER_DOMAIN}/${id}`, form)
   }
+
+  uploadCourseImage(id:number, file: File):Observable<any> {
+    const form = new FormData
+    form.append('file', file, file.name)
+    return this.http.post<any>(`${TEACHER_DOMAIN}/${id}/image`, form)
+  }
+
 
   // Student
   searchCourseForStudent(loginId:string):Observable<any[]> {

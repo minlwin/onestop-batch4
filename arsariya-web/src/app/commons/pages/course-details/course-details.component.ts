@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { tap } from 'rxjs';
 import { CourseService } from 'src/app/services/apis/course.service';
 import { SecurityService } from 'src/app/services/security/security.service';
 
@@ -16,7 +15,7 @@ export class CourseDetailsComponent {
   courseDto:any
 
   constructor(route:ActivatedRoute,
-    courseService:CourseService,
+    private service:CourseService,
     private security:SecurityService,
     private router:Router) {
 
@@ -25,7 +24,7 @@ export class CourseDetailsComponent {
 
       if(this.id) {
         // Load Course Information
-        courseService.findCourseDetails(this.id)
+        service.findCourseDetails(this.id)
           .subscribe(result => {
           this.courseDto = result
         })
@@ -45,5 +44,13 @@ export class CourseDetailsComponent {
 
   get loginId() {
     return this.security.loginId
+  }
+
+  uploadImage(file:File) {
+    if(this.courseDto && file) {
+      this.service.uploadCourseImage(this.courseDto.id, file).subscribe(result => {
+        this.courseDto = result
+      })
+    }
   }
 }

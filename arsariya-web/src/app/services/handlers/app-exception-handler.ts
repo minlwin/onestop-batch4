@@ -18,7 +18,7 @@ export class AppExceptionHandler implements ErrorHandler{
       type = error.error.status
     } else if(error?.message && error?.status) {
       message = error.message
-      type = error.type
+      type = error.status
     } else {
       message = error.message || "Angular Platform Error"
       type= "Angular"

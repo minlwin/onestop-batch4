@@ -33,6 +33,7 @@ public class RestApplicationExceptionHandlers {
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ApiResult<List<String>> handle(EntityNotFoundException e) {
+		e.printStackTrace();
 		return businessError(List.of(e.getMessage()));
 	}
 	

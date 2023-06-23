@@ -34,16 +34,18 @@ export class CourseEditComponent {
     this.addObjective()
 
     route.queryParamMap.subscribe(map => {
-      let courseId = map.get('id')
+      let courseId = map.get('courseId')
 
       if(courseId) {
         let id = Number.parseInt(courseId)
         courseService.findCourseDetails(id).subscribe(result => {
-          const {objectives, ... others} = result
-          this.form.patchValue(others)
+          const {teacher, category, ... others} = result
 
-          this.setObjectives(objectives)
+          this.form.patchValue(others)
+          this.form.patchValue({category: category.name})
         })
+
+        courseService.findObjectivesForCourse(id).subscribe(result => this.setObjectives(result))
       }
     })
   }
@@ -79,7 +81,7 @@ export class CourseEditComponent {
   private setObjectives(array:string[]) {
     this.objectives.clear()
     if(array) {
-      for(let item in array) {
+      for(let item of array) {
         this.objectives.push(this.builder.control(item, [Validators.required]))
       }
     }

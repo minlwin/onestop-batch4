@@ -10,8 +10,10 @@ import { MemberProfileComponent } from './member-profile/member-profile.componen
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HoverableDirective } from './hoverable.directive';
-import { FocusableDirective } from './focusable.directive';
+import { ProfileImagePipe } from './utils/pipes/profile-image.pipe';
+import { HoverableDirective } from './utils/directives/hoverable.directive';
+import { FocusableDirective } from './utils/directives/focusable.directive';
+import { CourseImagePipe } from './utils/pipes/course-image.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { FocusableDirective } from './focusable.directive';
     ErrorDialogComponent,
     HoverableDirective,
     FocusableDirective,
+    ProfileImagePipe,
+    CourseImagePipe,
   ],
   imports: [
     CommonModule,
@@ -43,6 +47,8 @@ import { FocusableDirective } from './focusable.directive';
     ErrorDialogComponent,
     HoverableDirective,
     FocusableDirective,
+    ProfileImagePipe,
+    CourseImagePipe,
   ]
 })
 export class WidgetsModule { }

@@ -15,8 +15,7 @@ export class ProfileService {
   uploadProfileImage(file: File):Observable<any> {
     const form = new FormData
     form.append('file', file, file.name)
-    const request = new HttpRequest("POST", `${MEMBER_DOMAIN}/image`, form)
-    return this.http.request<any>(request)
+    return this.http.post<any>(`${MEMBER_DOMAIN}/image`, form)
   }
 
   saveProfile(form:any):Observable<any> {

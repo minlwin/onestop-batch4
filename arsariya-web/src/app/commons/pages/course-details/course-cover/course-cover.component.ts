@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { CourseService } from 'src/app/services/apis/course.service';
 import { SecurityService } from 'src/app/services/security/security.service';
 
 @Component({
@@ -15,6 +16,9 @@ export class CourseCoverComponent {
 
   @Input()
   hideControls?:boolean
+
+  @Output()
+  onFileUpload = new EventEmitter
 
   constructor(private security:SecurityService, private router:Router) {}
 
@@ -42,6 +46,12 @@ export class CourseCoverComponent {
 
   get rootSegment() {
     return `/${this.security.role.toLocaleLowerCase()}`
+  }
+
+  uploadImage(files:FileList | null) {
+    if(files) {
+      this.onFileUpload.emit(files[0])
+    }
   }
 
 }

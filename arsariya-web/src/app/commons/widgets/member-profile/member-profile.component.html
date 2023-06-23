@@ -1,24 +1,26 @@
-<div class="card shadow-sm">
+<div *ngIf="profile" class="card shadow-sm">
   <div class="card-header bg-success-subtle">
     {{profileType}} Profile
   </div>
   <div class="card-body">
 
     <!-- Profile Image  -->
-    <img class="img-fluid w-100" [src]="profile?.image || '/assets/images/profile.png'" alt="">
+    <div class="d-flex justify-content-center py-3">
+      <img class="profile" [src]="profile.image | profileImage" alt="">
+    </div>
 
     <div class="list-group mt-3">
       <!-- Name -->
       <div class="list-group-item">
-        <i class="bi bi-person"></i> {{profile?.name || 'User Name'}}
+        <i class="bi bi-person"></i> {{profile.name}}
       </div>
       <!-- Phone -->
       <div class="list-group-item">
-        <i class="bi bi-telephone"></i> {{profile?.phone || 'No Phone Number'}}
+        <i class="bi bi-telephone"></i> {{profile.phone || 'No Phone Number'}}
       </div>
       <!-- Email -->
       <div class="list-group-item">
-        <i class="bi bi-envelope"></i> {{profile?.email || 'teacher@gmail.com'}}
+        <i class="bi bi-envelope"></i> {{profile.email}}
       </div>
     </div>
 

@@ -2,7 +2,7 @@
   <div *ngIf="courseDto" class="row">
     <div class="col">
       <!-- Course Information -->
-      <app-course-cover [dto]="courseDto"></app-course-cover>
+      <app-course-cover [dto]="courseDto" (onFileUpload)="uploadImage($event)" ></app-course-cover>
 
       <!-- What will you learn -->
       <section class="mt-4">
@@ -13,7 +13,7 @@
 
     <div class="col-3">
       <!-- Profile of Teacher -->
-      <app-member-profile profileType="Teacher" [email]="courseDto.teacher.email"></app-member-profile>
+      <app-member-profile profileType="Teacher" [email]="courseDto?.teacher?.email"></app-member-profile>
 
       <button *ngIf="courseDto?.teacher?.email != loginId"  (click)="showCoursesForTeacher()" class="btn btn-outline-success w-100 mt-3">
         <i class="bi bi-send"></i> Show Courses for Teacher

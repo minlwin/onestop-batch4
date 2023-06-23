@@ -26,6 +26,8 @@ public class CourseListVO {
 
 	@NonNull
 	private Integer hours;
+	
+	private String image;
 
 	private CategoryVO category;
 
@@ -35,6 +37,7 @@ public class CourseListVO {
 		var vo = new CourseListVO(entity.getId(), entity.getName(), entity.getFees(), entity.getHours());
 		vo.setCategory(CategoryVO.from(entity.getCategory()));
 		vo.setTeacher(MemberProfileDto.from(entity.getTeacher()));
+		vo.setImage(entity.getImage());
 		return vo;
 	}
 

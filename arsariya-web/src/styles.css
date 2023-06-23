@@ -1,3 +1,21 @@
 .btn-wrapper {
   padding-top: 2rem;
 }
+
+.profile {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.course-cover {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.course-list-image {
+  height: 240px;
+  object-fit: cover;
+}

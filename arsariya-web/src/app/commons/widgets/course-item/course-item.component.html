@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <img class="img-fluid w-100 card-img-top" [src]="course.image || '/assets/images/course-cover.jpg'" alt="">
+  <img class="course-list-image" [src]="course.image | courseImage" alt="">
 
   <div class="card-body d-flex justify-content-between">
     <span class="text-secondary">

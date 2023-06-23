@@ -37,7 +37,7 @@
       </div>
 
       <!-- Search Result -->
-      <div *ngIf="courseList.length" class="row row-cols-3 g-3 mb-3">
+      <div *ngIf="courseList.length" class="row row-cols-3  g-3 mb-3">
         <div class="col" *ngFor="let item of courseList">
           <app-course-item [course]="item" (showDetailsListener)="showDetails($event)" ></app-course-item>
         </div>

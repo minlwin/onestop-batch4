@@ -10,15 +10,12 @@
         <div class="card-body">
 
           <div class="row">
-            <div class="col-3 d-flex flex-column justify-content-center">
+            <div class="col-4">
               <!-- Image -->
-              <div class="align-self-center mb-4">
-                <img src="/assets/images/java-logo.png" height="240" alt="">
+              <div class="img-thumbnail">
+                <img class="img-fluid" src="/assets/images/course-cover.png" alt="">
               </div>
 
-              <button *ngIf="form.get('id')?.value" (click)="uploadPhoto()" class="btn btn-outline-primary">
-                <i class="bi bi-camera"></i> Upload Photo
-              </button>
             </div>
             <div class="col">
               <!-- Name -->
@@ -27,7 +24,7 @@
               </app-form-group>
               <!-- Category -->
               <app-form-group [valid]="form.get('category')?.valid ?? false" label="Category">
-                <input type="text" formControlName="category" class="form-control" placeholder="Enter Category of Course">
+                <input type="text" [attr.readonly]="!form.get('id')?.value ? null : true" formControlName="category" class="form-control" placeholder="Enter Category of Course">
               </app-form-group>
 
               <div class="row">

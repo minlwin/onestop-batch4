@@ -1,5 +1,6 @@
 package com.jdc.learners.domain.service;
 
+import static com.jdc.learners.utils.ExceptionUtils.idNotFound;
 import static com.jdc.learners.utils.SpecificationUtils.withFrom;
 import static com.jdc.learners.utils.SpecificationUtils.withTo;
 
@@ -16,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jdc.learners.domain.dto.form.CourseForm;
 import com.jdc.learners.domain.dto.page.PagerResult;
@@ -49,6 +51,9 @@ public class CourseService {
 	
 	@Autowired
 	private StudentRepo studentRepo;
+	
+	@Autowired
+	private FileUploadService uploadService;
 
 	@Transactional
 	@PreAuthorize("hasAuthority('Teacher')")
@@ -87,6 +92,17 @@ public class CourseService {
 		
 		return CourseListVO.from(entity);
 	}
+	
+	@Transactional
+	@PreAuthorize("hasAuthority('Teacher')")
+	public CourseDetailsVO uploadImage(int id, MultipartFile file) {		
+		return courseRepo.findById(id).map(entity -> {
+			entity.setImage(uploadService.uploadCourseImage(file));
+			return CourseDetailsVO.from(entity);
+		})
+		.map(this::setType)
+		.orElseThrow(() -> idNotFound("Course", id));
+	}
 
 	public Optional<List<String>> findObjective(int id) {
 		return courseRepo.findById(id).map(Course::getObjectives);
@@ -97,7 +113,7 @@ public class CourseService {
 				.map(CourseDetailsVO::from)
 				.map(this::setType);
 	}
-
+	
 	public PagerResult<CourseListVO> search(Optional<Integer> category, Optional<String> keyword, int current, int size) {
 		
 		var specification = withCategory(category)
@@ -183,9 +199,12 @@ public class CourseService {
 					vo.setType(Type.PROMOTE);
 				}
 			});	
+			
 		} else {
 			vo.setType(Type.PROMOTE);
 		}
 		return vo;
 	}
+
+
 }
