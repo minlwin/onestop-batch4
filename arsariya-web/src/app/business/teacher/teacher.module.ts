@@ -7,12 +7,14 @@ import { CourseEditComponent } from './course-edit/course-edit.component';
 import { WidgetsModule } from 'src/app/commons/widgets/widgets.module';
 import { PagesModule } from 'src/app/commons/pages/pages.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TeacherClassRoomComponent } from './teacher-class-room/teacher-class-room.component';
 
 
 @NgModule({
   declarations: [
     TeacherComponent,
     CourseEditComponent,
+    TeacherClassRoomComponent,
   ],
   imports: [
     CommonModule,

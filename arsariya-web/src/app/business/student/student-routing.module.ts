@@ -5,15 +5,17 @@ import { PublicHomeComponent } from 'src/app/commons/pages/public-home/public-ho
 import { StudentHomeComponent } from './student-home/student-home.component';
 import { CourseDetailsComponent } from 'src/app/commons/pages/course-details/course-details.component';
 import { TeacherProfileComponent } from 'src/app/commons/pages/teacher-profile/teacher-profile.component';
-import { ClassRoomComponent } from 'src/app/commons/pages/class-room/class-room.component';
 import { RegistrationPaidComponent } from './registration-paid/registration-paid.component';
+import { StudentClassRoomComponent } from './student-class-room/student-class-room.component';
 
 const routes: Routes = [
   {path: '', component: StudentComponent, children: [
     {path: 'public', component: PublicHomeComponent},
     {path: 'course-details', component: CourseDetailsComponent},
     {path: 'teacher-profile', component: TeacherProfileComponent},
-    {path: 'class-room', component: ClassRoomComponent},
+    {path: 'class-room', component: StudentClassRoomComponent, children: [
+
+    ]},
     {path: 'paid', component: RegistrationPaidComponent},
     {path: 'home', component: StudentHomeComponent},
     {path: '', redirectTo: '/student/home', pathMatch: 'full'}

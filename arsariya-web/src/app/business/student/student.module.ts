@@ -8,13 +8,15 @@ import { PagesModule } from 'src/app/commons/pages/pages.module';
 import { WidgetsModule } from 'src/app/commons/widgets/widgets.module';
 import { RegistrationPaidComponent } from './registration-paid/registration-paid.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StudentClassRoomComponent } from './student-class-room/student-class-room.component';
 
 
 @NgModule({
   declarations: [
     StudentComponent,
     StudentHomeComponent,
-    RegistrationPaidComponent
+    RegistrationPaidComponent,
+    StudentClassRoomComponent
   ],
   imports: [
     CommonModule,

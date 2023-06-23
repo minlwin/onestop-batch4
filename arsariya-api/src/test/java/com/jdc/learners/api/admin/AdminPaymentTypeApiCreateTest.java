@@ -22,7 +22,7 @@ import com.jdc.learners.domain.dto.PaymentTypeDto;
 @SpringBootTest
 @WithMockUser(username = "admin@gmail.com", authorities = "Admin")
 @TestMethodOrder(value = OrderAnnotation.class)
-public class AdminPaymentTypeApiTest {
+public class AdminPaymentTypeApiCreateTest {
 	
 	private WebTestClient client;
 	
