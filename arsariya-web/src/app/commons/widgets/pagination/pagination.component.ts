@@ -46,7 +46,7 @@ export class PaginationComponent {
 
       while(this.pages.length < Math.min(3, pager.totalPage)) {
         let target = this.pages[0] - 1
-        if(target <= 0) {
+        if(target <= -1) {
           break
         }
         this.pages.unshift(target)

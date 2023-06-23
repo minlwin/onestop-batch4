@@ -73,7 +73,7 @@ export class PublicHomeComponent implements OnInit {
   }
 
   changePageSize(size:number) {
-    this.searchForm.patchValue({size: size, current: 1})
+    this.searchForm.patchValue({size: size, current: 0})
     this.search()
   }
 }

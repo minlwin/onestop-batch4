@@ -13,7 +13,7 @@ export abstract class PagerListComponent {
   }
 
   changePageSize(size:number) {
-    this.form.patchValue({size: size, current: 1})
+    this.form.patchValue({size: size, current: 0})
     this.search()
   }
 }
